@@ -1,0 +1,172 @@
+/*********************************************
+
+This is the style file for this project.
+
+**********************************************/
+
+@font-face {
+  font-family: Vera;
+  src: url('../assets/fonts/VeraMoBd.ttf');
+  font-weight:400;
+  font-weight:normal;
+}
+
+body {
+  font-family: Vera, monospace;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#game {
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+
+#menu {
+}
+
+#title {
+  font-size: 1.5em;
+  line-height: 2em;
+  letter-spacing: 1em;
+  color: yellow;
+  text-align: center;
+  padding-left: 1em;
+  /* margin-bottom: 0.5em; */
+}
+
+#title.active:hover {
+  cursor: pointer;
+}
+
+a {
+  color: yellow;
+  /* text-decoration: none; */
+}
+
+#author {
+  font-size: 0.75em;
+  line-height: 1em;
+  letter-spacing: 1em;
+  color: yellow;
+  text-align: center;
+  padding-left: 1em;
+  padding-top: 1em;
+
+  /* margin-bottom: 0.5em; */
+}
+
+.menu-item {
+  color: white;
+  font-size: 1.5em;
+  line-height: 2em;
+  letter-spacing: 1em;
+  text-align: center;
+  padding-left: 1em;
+}
+
+.menu-item.active:hover {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
+
+.instruction {
+  font-size: 1em;
+  /* display: none; */
+  z-index: 500;
+}
+
+#message {
+  background-color: yellow;
+  color: black;
+  text-align: center;
+  font-size: 1em;
+  letter-spacing: 1em;
+  padding-left: 1em;
+  display: none;
+}
+
+.option {
+  /* padding-top: 1em; */
+  cursor: pointer;
+  display: inline-block;
+}
+
+.board-b72b1 {
+  margin: 0 auto;
+  border-top: .25em solid transparent;
+  border-bottom: .25em solid transparent;
+  border-left: none;
+  border-right: none;
+}
+
+.whiteTurn {
+  border-bottom: .25em solid yellow;
+}
+
+.blackTurn {
+  border-top: .25em solid yellow;
+}
+
+
+/* MOBILE? */
+@media only screen and (max-device-width: 768px) {
+  body {
+    font-size: 3em;
+  }
+
+  #wrapper {
+    width: 100vw;
+    margin: 0 auto;
+  }
+
+  #board {
+    margin: 0 auto;
+    width: 100vw;
+  }
+
+  .board-b72b1 {
+    width: 100vw;
+  }
+}
+
+/* DESKTOP and IPAD? */
+@media only screen and (min-device-width: 768px) {
+  body {
+    font-size: 1em;
+    padding-top: 2em;
+  }
+
+  #wrapper {
+    width: 400px;
+    margin: 0 auto;
+  }
+
+  #board {
+    margin: 0 auto;
+    width: 400px;
+  }
+
+  #menu {
+    margin: 0 auto;
+    width: 400px;
+  }
+
+  #title {
+    /* margin-left: 20px */
+  }
+
+  .board-b72b1 {
+    width: 400px;
+  }
+}
+
+.highlight1-32417 {
+  -webkit-box-shadow:inset 0 0 3px 3px red;
+  box-shadow: inset 200px 200px 0px 200px rgba(255,255,0,0.5);
+}
