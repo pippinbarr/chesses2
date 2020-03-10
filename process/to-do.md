@@ -21,7 +21,11 @@
 
 ## TRACES
 
-## DHARMA
+## SAMSARA
+
+- Make basic working version
+- Think about check and checkmate
+- What happens if you move a king?
 
 ## SOLOMON
 

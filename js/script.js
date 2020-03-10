@@ -22,7 +22,7 @@ function setup() {
 
 
   let menu = [{
-      title: "BASE",
+      title: "SAMSARA",
     },
     {
       title: "REVERSAL",
@@ -58,8 +58,8 @@ function menuClicked() {
       chess = new Reversal();
       break;
 
-    case 'BASE':
-      chess = new BaseChess();
+    case 'SAMSARA':
+      chess = new Samsara();
       break;
   }
 
