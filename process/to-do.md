@@ -7,27 +7,28 @@
 ## REVERSAL
 
 - ~~Make basic working version~~
-- ~~Think about check and checkmate~~
 
+- Think about check and checkmate
 - What happens if you move a king?
 
 ## FOG
 
 ## LIFE
 
-## AR
+## XR (Cross-Reality)
 
 ## MUSICAL
 
-## TRACES
+## TRACES / LEWITT
 
 ## SAMSARA
 
-- Make basic working version
+- ~~Make basic working version~~
+
 - Think about check and checkmate
 - What happens if you move a king?
 
-## SOLOMON
+## SOLOMON / I CUT YOU CHOOSE
 
 ## ENHANCE
 

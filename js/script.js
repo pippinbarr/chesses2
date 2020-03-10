@@ -27,6 +27,9 @@ function setup() {
     {
       title: "REVERSAL",
     },
+    {
+      title: "FOG",
+    },
   ];
 
   for (let i = 0; i < menu.length; i++) {
@@ -60,6 +63,10 @@ function menuClicked() {
 
     case 'SAMSARA':
       chess = new Samsara();
+      break;
+
+    case 'FOG':
+      chess = new Fog();
       break;
   }
 
