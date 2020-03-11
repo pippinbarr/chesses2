@@ -42,3 +42,31 @@ FOG is giving me some trouble. But it's design trouble mostly. The question is "
 - __A chess piece can see adjacent squares and move squares, but with diminishing ability__. So here the further the square the less clearly you can see it, with a kind of fall-off. This could be part of the "additive/subtractive" idea in the previous one too.
 
 I suppose what I'm seeing here is: I like the implications of adjacent+moves, though there MAY be something to be said for only moves. But the key is it needs to look a little more mysterious and fun, and I think some kind of version where squares' visibility are controlled by how many units can see them is a solid choice, rather than just on and off.
+
+---
+
+# XR and LeWitt and Next? (Wednesday, 11 March 2020, 16:02PM)
+
+## XR
+
+I made the XR (cross reality) game of my dreams (name courtesy of Rilla after some consultation about the correct buzzy term to apply here). It's literally just a chess board with no pieces on it, with the idea that it's cross-reality because it provides a "virtual" chess board and the player brings some pieces and plays the game on top, maybe by tipping their laptop over or by playing with tiny pieces on a phone, say.
+
+I like this because I think it perfectly meets my desire to make a game of chess that's just a board (or some other ultra-static version). I'd originally been thinking about it as 4'33" but pitching it as next-gen technology is much funnier.
+
+The one "issue" it introduces is the need for an information panel to explain the joke in case it's not totally clear. That's not ideal by any means, but having information panels might be a way to invite more people in and to clarify specific rules.
+
+## LeWitt
+
+Got a prototype of LeWitt up and running with a p5 canvas laid over the chess board. It's already quite satisfying, with just the potential hurdle of making the lines themselves a bit more "human" in keeping with the idea/spirit of LeWitt's wall drawings. Each piece draws a line through its trajectory. I like the idea you can save out the work you create after finishing the game. It should even be an automatic thing that prompts you to download the image.
+
+Remaining experiments are around humanising. I'll try p5.scribble and maybe my own line drawing function with noise() added to wobble it. Can even lerp the line over the move time. It may end up better rolling my own just because I'll have some control.
+
+## Next?
+
+So I have five that I'm genuinely satisfied with. I think FOG is the crowd pleaser here (just as Gravity was previously), and I'm fine with that. I need three more for a set and I have six possibilities: music, traces/heatmap, cut/choose, greys, life, skill...
+
+Unsurprisingly I've left these ones until later because less immediately jazzed by them. The heatmap won't be very hard, so that may make the most sense. Could either map generic activity or could map black and white separately. Could make captures "hotter" that not. Could mark out trajectories of movement or could not. I wonder if it will just look unintelligible.
+
+Music is semi easy but I wonder if it will sound just terrible. If it does... so be it? But if it's not interesting then... meh?
+
+There's the problem right? They might just not actually be interesting. But obviously I just make them and see what happens. So I should make: heatmap, music, and probably life just because that's such a weird idea. But I also really like cut/choose.
