@@ -10,6 +10,11 @@ class LeWitt extends BaseChess {
     resizeCanvas($('#board').width(), $('#board').width());
     $p5Canvas.show();
 
+    this.scribble = new Scribble();
+    this.scribble.bowing = 1; // changes the bowing of lines
+    this.scribble.roughness = 0.2; // changes the roughness of lines
+    this.scribble.maxOffset = 4; // coordinates will get an offset, here you define the max offset
+
   }
 
   move(from, to, silent) {
@@ -23,7 +28,7 @@ class LeWitt extends BaseChess {
     let boardX = $('#board').offset().left;
     let boardY = $('#board').offset().top;
 
-    let offset = $(SQUARE).width() / 2 + (turn === 'w' ? -2 : 2);
+    let offset = $(SQUARE).width() / 2;
 
     console.log(boardX, boardY);
 
@@ -32,8 +37,9 @@ class LeWitt extends BaseChess {
     let x2 = $to.offset().left - boardX + offset; // - $from.parent().offset().left;
     let y2 = $to.offset().top - boardY + offset; // - $from.parent().offset().top;
     console.log(x1, y1, x2, y2);
-    strokeWeight(3);
-    line(x1, y1, x2, y2);
+    stroke(0, 150);
+    strokeWeight(2);
+    this.scribble.scribbleLine(x1, y1, x2, y2);
   }
 
 }
