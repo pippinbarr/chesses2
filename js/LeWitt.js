@@ -40,6 +40,10 @@ class LeWitt extends BaseChess {
     stroke(0, 150);
     strokeWeight(2);
     this.scribble.scribbleLine(x1, y1, x2, y2);
+
+    if (this.game.game_over()) {
+      saveCanvas();
+    }
   }
 
 }
