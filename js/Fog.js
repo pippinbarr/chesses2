@@ -1,9 +1,5 @@
 "use strict";
 
-const SQUARE = ".square-55d63";
-const PIECE = ".piece-417db";
-const RANKS = "abcdefgh";
-
 class Fog extends BaseChess {
 
   constructor() {
@@ -17,6 +13,8 @@ class Fog extends BaseChess {
     // this.game.load("5Rnk/7n/7R/8/8/8/7R/6QK w - - 0 7");
     // this.board.position(this.game.fen(),false);
 
+    $(SQUARE).append('<div class="fog"></div>');
+
     this.setupFog();
   }
 
@@ -27,8 +25,8 @@ class Fog extends BaseChess {
   }
 
   setupFog() {
-    // Add fog to every square (we'll remove it as appropriate)
-    $(SQUARE).addClass('fog');
+    // Add fog to every square (we'll adjust it as appropriate)
+    $(`${SQUARE} .fog`).css('opacity', 1);
 
     // Remember whose turn it is
     const turn = this.game.turn();
@@ -41,11 +39,12 @@ class Fog extends BaseChess {
     // Remove fog from every square involved in any piece's move
     // (including start position)
     moves.forEach((move) => {
-      $(`.square-${move.to}`).removeClass('fog');
+      this.see($(`.square-${move.to} .fog`));
     });
 
+    let context = this;
     $(SQUARE).each(function() {
-      if (!$(this).hasClass('fog')) return;
+      // if (!$(this).hasClass('fog')) return;
       const square = $(this).data('square');
       let piece = $(this).children(PIECE)[0];
       if (piece !== undefined) {
@@ -53,7 +52,10 @@ class Fog extends BaseChess {
         let pieceType = $(piece).data('piece')[1].toLowerCase();
         if (pieceColor === turn) {
           // Make the square the piece is on visible (even if it can't move)
-          $(`.square-${square}`).removeClass('fog');
+          // $(`.square-${square}`).removeClass('fog');
+          $(`.square-${square} .fog`).css('opacity', 0);
+          // context.see($(`.square-${square} .fog`));
+
           // Make the squares around the piece visible
           const rank = square[0];
           const file = parseInt(square[1]);
@@ -65,49 +67,24 @@ class Fog extends BaseChess {
           const downRight = `${RANKS[RANKS.indexOf(rank)+1]}${file-1}`;
           const left = `${RANKS[RANKS.indexOf(rank)-1]}${file}`;
           const right = `${RANKS[RANKS.indexOf(rank)+1]}${file}`;
-          $(`.square-${up}`).removeClass('fog');
-          $(`.square-${down}`).removeClass('fog');
-          $(`.square-${left}`).removeClass('fog');
-          $(`.square-${right}`).removeClass('fog');
-          $(`.square-${upLeft}`).removeClass('fog');
-          $(`.square-${upRight}`).removeClass('fog');
-          $(`.square-${downLeft}`).removeClass('fog');
-          $(`.square-${downRight}`).removeClass('fog');
+          context.see($(`.square-${up} .fog`));
+          context.see($(`.square-${down} .fog`));
+          context.see($(`.square-${left} .fog`));
+          context.see($(`.square-${right} .fog`));
+          context.see($(`.square-${upLeft} .fog`));
+          context.see($(`.square-${upRight} .fog`));
+          context.see($(`.square-${downLeft} .fog`));
+          context.see($(`.square-${downRight} .fog`));
 
         }
       }
     });
-
-    // Remove fog from the square immediately on all sides of every piece
-    // (two square for pawns on the first rank if there's space?)
-    // $(PIECE).each(function() {
-    //   const color = $(this).data('piece')[0];
-    //   if (color !== turn) return;
-    //   const type = $(this).data('piece')[1].toLowerCase();
-    //   const square = $(this).parent().data('square');
-    //   const rank = square[0];
-    //   const file = square[1];
-    //
-    //   $(`.square-${rank}${file+1}`).removeClass('fog');
-    //
-    //
-    // });
-
-
-    $('.fog').children(PIECE).hide();
-
-
   }
 
-}
+  see(square) {
+    let opacity = parseFloat(square.css('opacity'));
+    opacity -= 0.2;
+    square.css('opacity', opacity);
+  }
 
-
-let vowels = ['a', 'e', 'i', 'o', 'u'];
-
-let teaName = "Assam";
-let firstLetter = teaName.charAt(0).toLowerCase();
-
-let article = "a";
-if ("aeiou".split().includes(firstLetter)) {
-  article = "an";
 }

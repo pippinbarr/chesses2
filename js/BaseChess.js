@@ -1,5 +1,9 @@
 "use strict";
 
+const SQUARE = ".square-55d63";
+const PIECE = ".piece-417db";
+const RANKS = "abcdefgh";
+
 // The sound effects
 const placeSFX = new Howl({
   src: ['assets/sounds/place.wav', 'assets/sounds/place.mp3']
@@ -14,16 +18,15 @@ const attackSFX = new Howl({
 
 class BaseChess {
 
-  constructor () {
+  constructor() {
     this.setup();
   }
 
-  setup () {
+  setup() {
     this.config = {
       draggable: false,
       position: 'start',
-      onMoveEnd: () => {
-      },
+      onMoveEnd: () => {},
       moveSpeed: 200,
       showNotation: false
     };
@@ -38,7 +41,7 @@ class BaseChess {
       transform: 'rotate(0deg)'
     });
 
-    $('.square-55d63').css({
+    $(SQUARE).css({
       transform: 'rotate(0deg)'
     });
 
@@ -49,7 +52,7 @@ class BaseChess {
   squareClicked(event) {
     // Find out the notation of the square and also the element representing the piece
     let square = $(event.currentTarget).attr('data-square');
-    let piece = $(event.currentTarget).find('.piece-417db');
+    let piece = $(event.currentTarget).find(PIECE);
     let validPiece = (piece.length !== 0 && piece.attr('data-piece').indexOf(this.game.turn()) !== -1);
 
     if (this.from === null && validPiece) {
@@ -57,8 +60,10 @@ class BaseChess {
       this.from = square;
       let moves = this.getMoves(square);
       if (moves.length === 0) {
-        $(`.square-${square} .piece-417db`).effect('shake', { times: 1, distance: 2 }, 50, () => {
-        });
+        $(`.square-${square} ${PIECE}`).effect('shake', {
+          times: 1,
+          distance: 2
+        }, 50, () => {});
         this.from = null;
         this.clearHighlights();
         return;
@@ -71,8 +76,10 @@ class BaseChess {
         // But now we're selecting another valid piece to move, so we should rehilight
         let moves = this.getMoves(square);
         if (moves.length === 0) {
-          $(`.square-${square} .piece-417db`).effect('shake', { times: 1, distance: 2 }, 50, () => {
-          });
+          $(`.square-${square} ${PIECE}`).effect('shake', {
+            times: 1,
+            distance: 2
+          }, 50, () => {});
           this.from = null;
           this.clearHighlights();
           return;
@@ -84,8 +91,8 @@ class BaseChess {
       }
       else if ($(event.currentTarget).hasClass('highlight1-32417')) {
         let to = $(event.currentTarget).attr('data-square');
-        console.log(this.from,to)
-        this.move(this.from,to);
+        console.log(this.from, to)
+        this.move(this.from, to);
       };
     }
   }
@@ -114,7 +121,7 @@ class BaseChess {
     return moves.length;
   }
 
-  move(from,to,silent) {
+  move(from, to, silent) {
     if (silent === undefined) silent = false;
 
     // if (!silent) this.disableInput();
@@ -135,7 +142,7 @@ class BaseChess {
       this.clearHighlights();
 
       // Update the board based on the new position
-      this.board.position(this.game.fen(),true);
+      this.board.position(this.game.fen(), true);
 
       setTimeout(() => {
         if (move && (move.flags.indexOf('c') !== -1 || move.flags.indexOf('e') !== -1)) {
@@ -145,7 +152,7 @@ class BaseChess {
           placeSFX.play();
         }
         this.moveCompleted();
-      },this.config.moveSpeed * 1.1);
+      }, this.config.moveSpeed * 1.1);
     }
 
     return move;
@@ -153,7 +160,7 @@ class BaseChess {
 
   // Remove highlights from every square on the board
   clearHighlights() {
-    $('.square-55d63').removeClass(`highlight1-32417`);
+    $(SQUARE).removeClass(`highlight1-32417`);
   }
 
   clearHighlight(element) {
@@ -162,7 +169,7 @@ class BaseChess {
 
   // Highlight the specified square
   highlight(square) {
-    $('.square-'+square).addClass(`highlight1-32417`);
+    $('.square-' + square).addClass(`highlight1-32417`);
   }
 
   moveCompleted() {
@@ -171,7 +178,7 @@ class BaseChess {
     if (moves.length === 0) {
       if (this.game.in_check()) {
         // CHECKMATE
-        this.showResult(true,this.getTurn(false));
+        this.showResult(true, this.getTurn(false));
       }
       else {
         // STALEMATE
@@ -188,27 +195,29 @@ class BaseChess {
   enableInput() {
     if (this.inputEnabled === true) return;
     this.inputEnabled = true;
-    $('.square-55d63').on('click', (event) => { this.squareClicked(event); });
+    $(SQUARE).on('click', (event) => {
+      this.squareClicked(event);
+    });
   }
 
   disableInput() {
     if (this.inputEnabled === false) return;
     this.inputEnabled = false;
-    $('.square-55d63').off('click');
+    $(SQUARE).off('click');
   }
 
   changeTurn() {
     if (this.gameOver) return;
     if (this.game.turn() === 'w') {
-      $('.board-b72b1').removeClass('blackTurn',250);
-      $('.board-b72b1').addClass('whiteTurn',250,() => {
+      $('.board-b72b1').removeClass('blackTurn', 250);
+      $('.board-b72b1').addClass('whiteTurn', 250, () => {
         this.enableInput();
         this.from = null;
       });
     }
     else {
-      $('.board-b72b1').removeClass('whiteTurn',250);
-      $('.board-b72b1').addClass('blackTurn',250,() => {
+      $('.board-b72b1').removeClass('whiteTurn', 250);
+      $('.board-b72b1').addClass('blackTurn', 250, () => {
         this.enableInput();
         this.from = null;
       });
@@ -228,7 +237,7 @@ class BaseChess {
     this.changeTurnTo(this.game.turn() === 'w' ? 'b' : 'w');
   }
 
-  showResult(win,color) {
+  showResult(win, color) {
     if (win) {
       if (color === 'w') {
         $('#message').text('WHITE WINS');
