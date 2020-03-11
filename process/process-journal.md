@@ -28,3 +28,17 @@ Maybe pending technology...
 ## AI?
 
 One of the things lacking with the original game was the lack of an AI for people to play against solo. The obvious problem being that an AI is probably going to suck pretty bad. Though THAT said I suppose so long as you have a simulating function that returns board positions it's still possible to evaluate? But no doubt it would still be kind of horrible? Maybe still not worth the amount of effort it would cost?
+
+---
+
+# How does the grey fog fog? (Wednesday, 11 March 2020, 14:06PM)
+
+Since last we spoke I have REVERSAL, SAMSARA, and (a version of) FOG going. REVERSAL and SAMSARA work pretty great just as they are (with the obvious need to tweak for a few special circumstances like check).
+
+FOG is giving me some trouble. But it's design trouble mostly. The question is "what can a chess piece see?" And I'm not sure how to answer. Here are some possibilities, is one of them right?
+
+- __A chess piece can see all (eight) adjacent squares and nothing more.__ This implies many circumstances in which a piece can't see a square it might move to, leading to blind moves. It might be possible to deduce whether there's a piece (or not) based on the potential moves of multiple of your pieces, which might be interesting (or not). This has the advantage of never revealing "too much" of the board at any one time, but may strip enough information that the game feels random.
+- __A chess piece can see all (eight) adjacent squares and all squares that it could move to (including captures)__. This is what I've got implemented right now and it allows you to see a lot of squares pretty swiftly. It's not bad though actually? Playing into a game a bit, you still can't see much at the start, as the ends of the board are very mysterious. I also like that you can have asymmetric sighting here, like a bishop seeing a knight it could capture but the knight not seeing the bishop. Also obviously the capture of a piece is significant because of the visibility change. (I think the biggesting thing I don't love is just the aesthetics, it might be that you could have an additive visibility thing... every sighting subtracts 0.1 opacity of the fog or something - doesn't really change anything but just makes more distant/less seen things more murky, more liable to lead to a mistake?)
+- __A chess piece can see adjacent squares and move squares, but with diminishing ability__. So here the further the square the less clearly you can see it, with a kind of fall-off. This could be part of the "additive/subtractive" idea in the previous one too.
+
+I suppose what I'm seeing here is: I like the implications of adjacent+moves, though there MAY be something to be said for only moves. But the key is it needs to look a little more mysterious and fun, and I think some kind of version where squares' visibility are controlled by how many units can see them is a solid choice, rather than just on and off.
