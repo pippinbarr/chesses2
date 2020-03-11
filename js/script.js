@@ -30,6 +30,9 @@ function setup() {
     {
       title: "FOG",
     },
+    {
+      title: "XR",
+    },
   ];
 
   for (let i = 0; i < menu.length; i++) {
@@ -67,6 +70,10 @@ function menuClicked() {
 
     case 'FOG':
       chess = new Fog();
+      break;
+
+    case 'XR':
+      chess = new XR();
       break;
   }
 

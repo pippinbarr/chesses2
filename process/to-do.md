@@ -13,9 +13,14 @@
 
 ## FOG
 
+- ~~Make a shitty prototype~~
+- ~~Make a better prototype~~
+
 ## LIFE
 
 ## XR (Cross-Reality)
+
+- ~~__THAT WAS EASY__ Make a perfect first version~~
 
 ## MUSICAL
 
