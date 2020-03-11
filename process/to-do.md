@@ -26,6 +26,11 @@
 
 ## TRACES / LEWITT
 
+- ~~Get a basic prototype working~~
+
+- Consider p5.scribble
+- Consider writing your own line-drawing code with noise()
+
 ## SAMSARA
 
 - ~~Make basic working version~~

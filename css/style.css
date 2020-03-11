@@ -6,6 +6,10 @@ This is the style file for this project.
 
 /* FOG OF WAR */
 
+#board {
+  position: relative;
+}
+
 .fog {
   position: absolute;
   top: 0;
@@ -15,6 +19,16 @@ This is the style file for this project.
   background-color: rgba(210,210,210);
   opacity: 1;
   z-index: 2000;
+}
+
+/* LEWITT */
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  pointer-events: none;
 }
 
 /* GENERAL */
@@ -127,6 +141,7 @@ a {
 .blackTurn {
   border-top: .25em solid yellow;
 }
+
 
 
 

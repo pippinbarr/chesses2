@@ -9,10 +9,11 @@ Pippin Barr
 
 
 let chess;
+let $p5Canvas;
 
-$(document).ready(setup);
+$(document).ready(chessesSetup);
 
-function setup() {
+function chessesSetup() {
 
   let title = "CHESSES 2";
   $('#title').text(`${title}`)
@@ -32,6 +33,9 @@ function setup() {
     },
     {
       title: "XR",
+    },
+    {
+      title: "LEWITT",
     },
   ];
 
@@ -75,6 +79,10 @@ function menuClicked() {
     case 'XR':
       chess = new XR();
       break;
+
+    case 'LEWITT':
+      chess = new LeWitt();
+      break;
   }
 
   $('#title').addClass('active');
@@ -93,4 +101,13 @@ function menuClicked() {
     });
   });
   $('#message').slideUp();
+}
+
+function setup() {
+  createCanvas(640, 640);
+  $p5Canvas = $('canvas');
+  // $p5Canvas.detach();
+  $p5Canvas.hide();
+
+  background(255, 0, 0);
 }
