@@ -42,8 +42,27 @@ class LeWitt extends BaseChess {
     this.scribble.scribbleLine(x1, y1, x2, y2);
 
     if (this.game.game_over()) {
-      saveCanvas();
+      this.save();
     }
+  }
+
+  save() {
+    loadPixels();
+
+    let lines = createImage(width, height);
+    lines.loadPixels();
+    for (let i = 0; i < width; i++) {
+      for (let j = 0; j < height; j++) {
+        lines.set(i, j, get(i, j));
+      }
+    }
+
+    lines.updatePixels();
+
+    background(255);
+    blend(lines, 0, 0, width, height, 0, 0, width, height, BLEND);
+
+    saveCanvas();
   }
 
 }
