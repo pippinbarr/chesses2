@@ -40,7 +40,9 @@
 - Think about check and checkmate
 - What happens if you move a king?
 
-## SOLOMON / I CUT YOU CHOOSE
+## ABRAHAM / I CUT YOU CHOOSE
+
+- Starting to feel like this one just doesn't work...
 
 ## ENHANCE
 

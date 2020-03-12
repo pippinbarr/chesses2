@@ -37,6 +37,9 @@ function chessesSetup() {
     {
       title: "LEWITT",
     },
+    {
+      title: "MUSICAL",
+    },
   ];
 
   for (let i = 0; i < menu.length; i++) {
@@ -82,6 +85,10 @@ function menuClicked() {
 
     case 'LEWITT':
       chess = new LeWitt();
+      break;
+
+    case 'MUSICAL':
+      chess = new Musical();
       break;
   }
 
