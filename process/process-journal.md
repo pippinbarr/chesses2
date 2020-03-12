@@ -70,3 +70,21 @@ Unsurprisingly I've left these ones until later because less immediately jazzed 
 Music is semi easy but I wonder if it will sound just terrible. If it does... so be it? But if it's not interesting then... meh?
 
 There's the problem right? They might just not actually be interesting. But obviously I just make them and see what happens. So I should make: heatmap, music, and probably life just because that's such a weird idea. But I also really like cut/choose.
+
+---
+
+# LeWitt humanized + Viral tweet (Thursday, 12 March 2020, 11:34AM)
+
+## LeWitt humanized
+
+I now have the LEWITT version drawing using p5.scribble and it's kind of perfect in terms of conveying the idea of a human drawing (on a wall) rather than a totally robotic thing. The drawings that come out of this are surprisingly lovely, too, which is neat. When the game ends it saves out an image with the lines as drawn on a white background so that you get a nice sense of a wall drawing properly. It's kind of beautiful. I'm very happy with this one.
+
+## Viral tweet
+
+I tweeted about the FOG version yesterday and it hit the big time. As of this moment the tweet has 26K likes, 5.6K retweets, and 280 replies. Easily the most "successful" tweet I've ever put out there, dwarfing even the gravity chess tweet from the first CHESSES.
+
+By somewhat fun comparison, the LEWITT version, which I also tweeted, has 59 likes and 5 retweets. Pretty obvious what the people like. And this whole thing is kind of a story of that - it's so apparent that if I make something that's more of a crowd pleaser it gets a ton more engagement, even if I don't always think it's my most interesting work. It's fine of course, and it's truly wonderful that I can get this kind of a reaction to an experimental game I'm making, but also lightly dispiriting when I think about the total non-reaction to The Artist Is Present 2. Oh well oh well.
+
+As happened with CHESSES, I won't be surprised in the slightest if the release is accompanied by far less fanfare than the image tweet. There's definitely something about the ease of liking it and moving on that works in the twitter economy much better than even the seemingly minimal effort of clicking through and playing the game. Funny really. People want to get the joke and move on, but I'd still claim that playing the game is totally distinct and that you don't really get many of the play implications without... well, playing.
+
+Fun though.
