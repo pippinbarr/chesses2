@@ -88,3 +88,42 @@ By somewhat fun comparison, the LEWITT version, which I also tweeted, has 59 lik
 As happened with CHESSES, I won't be surprised in the slightest if the release is accompanied by far less fanfare than the image tweet. There's definitely something about the ease of liking it and moving on that works in the twitter economy much better than even the seemingly minimal effort of clicking through and playing the game. Funny really. People want to get the joke and move on, but I'd still claim that playing the game is totally distinct and that you don't really get many of the play implications without... well, playing.
 
 Fun though.
+
+---
+
+# Not enough? New ideas (Friday, 13 March 2020, 14:42PM)
+
+## Not enough?
+
+Looking at what I have right now, I don't think I have a strong enough set. Notably I don't have 8 and I'm not seeing the final pieces in the set of ideas I already have. I'm happy with:
+
+- REVERSAL
+- SAMARA
+- FOG
+- LEWITT
+- XR
+
+I believe in
+
+- MUSICAL (though it doesn't work)
+
+I'm super skeptical about
+
+- LIFE
+- GREY
+- SKILL
+- ENHANCE
+
+That being the case I need some new ideas. Well?
+
+## New ideas
+
+- __3D__. The board is rotated back and the pieces are standing up and it fancy rotates per turn maybe
+- __HEATMAP__? Resurrect this old thang?
+- __RECURSIVE__. You play chess to decide whether a capture happens. Someone already thought of it of course and it's not THAT interesting.
+- __HOLES/PITFALL__. Holes appear somehow and you can fall into them. Either they're already there and move around, or they're caused when a piece stays "too long" on a square? Guess if you just randomly chuck them on the board in the middle four ranks it's fair enough? Just a randomized game where some squares are out of bounds?
+- __GOLF__. There's a hole and you need to get a piece into it to win the round. But then that piece is gone (except the king).
+- __FOOTBALL__. There's a ball and two goals. Pieces hit the ball and it moves in the direction of the kick. (Seems like it'd be way too easy to just goal-tend?) Captures etc. still in effect.
+- __EVERYBODY__. You have to move every piece before you can re-move them. This is a known variant already though. Boring.
+- __DONNE__. No man is an island. Any piece moved such that it has no neighbours vanishes. (Can those neighbours by the opposite color? Not really going by the sentiment of the verse which is about people supporting you which isn't what the opposite side is doing)
+- __CO-OP__. What would it take for chess to be a co-op game with a shared objective?
