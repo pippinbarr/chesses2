@@ -38,6 +38,7 @@ class Life extends BaseChess {
       for (let rank = 0; rank < this.RANKS.length; rank++) {
         let square = `${this.FILES[file]}${this.RANKS[rank]}`;
         let piece = $(`.square-${square} img`).data("piece");
+        if (piece && piece.indexOf('K') >= 0) newPosition[square] = position[square];
 
         let numNeighbours = this.neighbours(position, file, rank);
 
@@ -61,7 +62,7 @@ class Life extends BaseChess {
       }
     }
 
-    this.game.load(Chessboard.objToFen(newPosition) + ' w KQkq - 0 1');
+    this.game.load(Chessboard.objToFen(newPosition) + ` ${this.game.turn()} KQkq - 0 1`);
     this.board.position(this.game.fen(), false);
 
     setTimeout(() => {
