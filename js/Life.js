@@ -21,15 +21,25 @@ class Life extends BaseChess {
     this.FILES = "abcdefgh";
     this.RANKS = "12345678";
     this.STEP_INTERVAL = 1000;
+    this.VALUES = {
+      k: 0,
+      q: 9,
+      r: 5,
+      b: 3,
+      n: 3,
+      p: 1
+    }
 
-    this.step();
   }
 
-  // Alive cell - Fewer than 2 alive neighbours - dies (underpopulation).
-  // Alive cell - 2 or 3 neighbours - continues to live (perfect situation).
-  // Alive cell - More than 3 alive neighbours - dies (overpopulation).
-  // Dead cell - Exactly three alive neighbours - becomes alive (reproduction).
-  // But I also need to make a separate array since you evaluate everything in a single moment
+  move(from, to) {
+    super.move(from, to);
+
+    setTimeout(() => {
+      this.step();
+    }, this.config.moveSpeed);
+
+  }
 
   step() {
     let position = this.board.position();
@@ -43,6 +53,17 @@ class Life extends BaseChess {
         let numNeighbours = this.neighbours(position, file, rank);
 
         console.log(square, numNeighbours);
+
+        // 78 is the total value of all pieces on the board (except king)
+        // Average value is therefore 78 / 30 = 2.6
+
+        // In life you die with 0, 1 and 4, 5, 6, 7, 8
+        // You survive with 2, 3
+        // You birth with 3 (and empty)
+        // So we'd have: 0 to 5.2 = death
+        // 5.2 to 7.4 = life
+        // 7.4 and up = death
+        // 7.4 = life (but we'll need a range)
 
         if (numNeighbours === 3) {
           // console.log(square, position[square]);
@@ -64,10 +85,6 @@ class Life extends BaseChess {
 
     this.game.load(Chessboard.objToFen(newPosition) + ` ${this.game.turn()} KQkq - 0 1`);
     this.board.position(this.game.fen(), false);
-
-    setTimeout(() => {
-      this.step()
-    }, this.STEP_INTERVAL);
   }
 
   neighbours(position, file, rank) {
@@ -82,7 +99,8 @@ class Life extends BaseChess {
         if (checkRank === rank && checkFile === file) continue;
         let neighbourSquare = `${this.FILES[checkFile]}${this.RANKS[checkRank]}`;
         if (position[neighbourSquare] && position[neighbourSquare] !== undefined) {
-          count++;
+          let piece = position[neighbourSquare][1].toLowerCase();
+          count += this.VALUES[piece];
         }
       }
     }

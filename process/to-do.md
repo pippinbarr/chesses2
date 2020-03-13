@@ -18,6 +18,10 @@
 
 ## LIFE
 
+- ~~Shitty prototype~~
+
+- Try step per turn (after turn completes)
+
 ## XR (Cross-Reality)
 
 - ~~__THAT WAS EASY__ Make a perfect first version~~
