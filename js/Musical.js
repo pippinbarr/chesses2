@@ -54,18 +54,23 @@ class Musical extends BaseChess {
     let $squares = $(`div[class*="square-${this.files[this.file]}"] img`);
     let context = this;
     $squares.each(function() {
-      // DRUM VERSION
-      let piece = $(this).data('piece')[1].toLowerCase();
-      context.drums[piece].currentTime = 0;
-      context.drums[piece].play();
+      let color = $(this).data('piece')[0].toLowerCase();
 
-      // SYNTH VERSION
-      // let rank = parseInt($(this).parent().data("square")[1]);
-      // let synth = context.synths[rank - 1];
-      // synth.play();
-      // setTimeout(() => {
-      // synth.stop();
-      // }, context.MUSIC_INTERVAL / 2 - synth.release * 1000);
+      if (color === 'w') {
+        // DRUM VERSION
+        let piece = $(this).data('piece')[1].toLowerCase();
+        context.drums[piece].currentTime = 0;
+        context.drums[piece].play();
+      }
+      else {
+        // SYNTH VERSION
+        let rank = parseInt($(this).parent().data("square")[1]);
+        let synth = context.synths[rank - 1];
+        synth.play();
+        setTimeout(() => {
+          synth.stop();
+        }, context.MUSIC_INTERVAL / 2 - synth.release * 1000);
+      }
     });
     this.file = (this.file + 1) % this.files.length;
   }
