@@ -20,11 +20,15 @@ class Musical extends BaseChess {
 
     this.MUSIC_INTERVAL = 1000;
     this.synths = [];
+    let frequencies = [
+      220, 246.94, 277.18, 293.66, 329.63, 369.99, 415.30
+    ];
+
     for (let i = 0; i < 8; i++) {
       this.synths.push(new Pizzicato.Sound({
         source: 'wave',
         options: {
-          frequency: 440 + i * 22
+          frequency: frequencies[i]
         }
       }));
     }
