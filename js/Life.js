@@ -50,9 +50,9 @@ class Life extends BaseChess {
         let piece = $(`.square-${square} img`).data("piece");
         if (piece && piece.indexOf('K') >= 0) newPosition[square] = position[square];
 
-        let numNeighbours = this.neighbours(position, file, rank);
+        let neighbours = this.neighbours(position, file, rank);
 
-        console.log(square, numNeighbours);
+        console.log(square, neighbours.count, neighbours.average);
 
         // 78 is the total value of all pieces on the board (except king)
         // Average value is therefore 78 / 30 = 2.6
@@ -65,16 +65,22 @@ class Life extends BaseChess {
         // 7.4 and up = death
         // 7.4 = life (but we'll need a range)
 
-        if (numNeighbours === 3) {
+        if (neighbours.count === 3) {
           // console.log(square, position[square]);
         }
 
-        if (numNeighbours < 2 || numNeighbours > 3) {
+        if (neighbours.count < 2 || neighbours.count > 3) {
           // DEATH, so just don't add this square
         }
-        else if (numNeighbours === 3 && !position[square]) {
+        else if (neighbours.count === 3 && !position[square]) {
           // LIFE, so add this square
-          newPosition[square] = 'wP';
+          let value = Math.round(neighbours.average);
+          let piece;
+          if (value < 3) piece = "P";
+          else if (value < 5) piece = Math.random() < 0.5 ? 'N' : 'B';
+          else if (value < 8) piece = "R";
+          else piece = "Q";
+          newPosition[square] = `${neighbours.color}${piece}`;
         }
         else {
           // STASIS, so just maintain this square as is
@@ -90,6 +96,9 @@ class Life extends BaseChess {
   neighbours(position, file, rank) {
     let square = `${this.FILES[file]}${this.RANKS[rank]}`;
     let count = 0;
+    let value = 0;
+    let blacks = 0;
+    let whites = 0;
     for (let f = file - 1; f <= file + 1; f++) {
       let checkFile = f >= 0 ? f > 7 ? 0 : f : 7; // For wrap system
       // if (f < 0 || f > 7) continue; // For closed system
@@ -99,12 +108,37 @@ class Life extends BaseChess {
         if (checkRank === rank && checkFile === file) continue;
         let neighbourSquare = `${this.FILES[checkFile]}${this.RANKS[checkRank]}`;
         if (position[neighbourSquare] && position[neighbourSquare] !== undefined) {
+          let color = position[neighbourSquare][0];
           let piece = position[neighbourSquare][1].toLowerCase();
-          count += this.VALUES[piece];
+          if (color == 'w') {
+            whites++;
+          }
+          else {
+            blacks++;
+          }
+
+          count++;
+          value += this.VALUES[piece];
         }
       }
     }
-    return count;
+
+    let color;
+    if (whites > blacks) {
+      color = 'w';
+    }
+    else if (blacks > whites) {
+      color = 'b';
+    }
+    else {
+      color = Math.random() > 0.5 ? 'w' : 'b';
+    }
+
+    return {
+      count: count,
+      average: count > 0 ? value / count : 0,
+      color: color
+    };
   }
 
 
