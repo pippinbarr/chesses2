@@ -48,7 +48,8 @@ class Life extends BaseChess {
       for (let rank = 0; rank < this.RANKS.length; rank++) {
         let square = `${this.FILES[file]}${this.RANKS[rank]}`;
         let piece = $(`.square-${square} img`).data("piece");
-        if (piece && piece.indexOf('K') >= 0) newPosition[square] = position[square];
+
+        if (piece && piece[1] === 'K') newPosition[square] = position[square];
 
         let neighbours = this.neighbours(position, file, rank);
 
