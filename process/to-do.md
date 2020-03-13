@@ -49,6 +49,10 @@
 - Think about check and checkmate
 - What happens if you move a king?
 
+## 3D
+
+- ~~__YUP, THAT WORKS I GUESS.__ Make a prototype~~
+
 ## ABRAHAM / I CUT YOU CHOOSE
 
 - Starting to feel like this one just doesn't work...? Like, whichever way it might lead to super boring games. If you choose the piece for your opponent you'll obviously just choose useless pieces. If you choose the move you'll obviously just choose the worst move. So you'd end up with just a bad game since neither side of the equation really give decisive good/bad control over the game. Sad.

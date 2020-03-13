@@ -18,7 +18,7 @@ class Musical extends BaseChess {
     // this.game.load("5Rnk/7n/7R/8/8/8/7R/6QK w - - 0 7");
     // this.board.position(this.game.fen(),false);
 
-    this.MUSIC_INTERVAL = 1000;
+    this.MUSIC_INTERVAL = 500;
     this.synths = [];
     let frequencies = [
       220, 246.94, 277.18, 293.66, 329.63, 369.99, 415.30
@@ -28,7 +28,9 @@ class Musical extends BaseChess {
       this.synths.push(new Pizzicato.Sound({
         source: 'wave',
         options: {
-          frequency: frequencies[i]
+          frequency: frequencies[i],
+          attack: 0.1,
+          release: 0.1
         }
       }));
     }
@@ -49,7 +51,7 @@ class Musical extends BaseChess {
       synth.play();
       setTimeout(() => {
         synth.stop();
-      }, 500);
+      }, context.MUSIC_INTERVAL / 2 - synth.release * 1000);
     });
     this.file = (this.file + 1) % this.files.length;
   }
