@@ -15,7 +15,7 @@ $(document).ready(chessesSetup);
 
 function chessesSetup() {
 
-  let title = "CHESSES 2";
+  let title = "CHESSES2";
   $('#title').text(`${title}`)
 
   let author = 'BY <a href="https://www.pippinbarr.com/" target="_blank">&nbsp;PIPPIN BARR</a>';
@@ -42,6 +42,9 @@ function chessesSetup() {
     },
     {
       title: "LIFE",
+    },
+    {
+      title: "3D",
     },
   ];
 
@@ -96,6 +99,10 @@ function menuClicked() {
 
     case 'LIFE':
       chess = new Life();
+      break;
+
+    case '3D':
+      chess = new ThreeDee();
       break;
   }
 
