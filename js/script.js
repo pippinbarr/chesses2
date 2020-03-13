@@ -47,15 +47,17 @@ function chessesSetup() {
       title: "3D",
     },
   ];
+  menu.sort((a, b) => a.title < b.title ? -1 : 1);
 
   for (let i = 0; i < menu.length; i++) {
-    let marker = menu[i].title;
-    let $item = $(`<div class="menu-item active" id="${marker}">${menu[i].title}</div>`);
-    $item.data('game', marker);
-    $('#menu').append($item);
+    $('<div>')
+      .addClass('menu-item active')
+      .attr('id', menu[i].title)
+      .text(menu[i].title)
+      .data('game', menu[i].title)
+      .on('click', menuClicked)
+      .appendTo('#menu')
   }
-
-  $('.menu-item').on('click', menuClicked);
 }
 
 function titleClicked() {
@@ -65,8 +67,9 @@ function titleClicked() {
   $('#game').slideUp(() => {
     $('.menu-item').slideDown();
     $('#author').slideDown();
-    $('.menu-item').addClass('active');
-    $('.menu-item').on('click', menuClicked);
+    $('.menu-item')
+      .addClass('active')
+      .on('click', menuClicked);
   });
 }
 

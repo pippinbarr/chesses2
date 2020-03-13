@@ -23,6 +23,14 @@ class Musical extends BaseChess {
     let frequencies = [
       220, 246.94, 277.18, 293.66, 329.63, 369.99, 415.30
     ];
+    this.drums = {
+      p: new Audio("assets/sounds/808/BD10.WAV"),
+      n: new Audio("assets/sounds/808/CLHAT2.WAV"),
+      b: new Audio("assets/sounds/808/OPHAT2.WAV"),
+      r: new Audio("assets/sounds/808/SD05.WAV"),
+      q: new Audio("assets/sounds/808/CLAPS.WAV"),
+      k: new Audio("assets/sounds/808/CLAVES.WAV")
+    };
 
     for (let i = 0; i < 8; i++) {
       this.synths.push(new Pizzicato.Sound({
@@ -46,12 +54,18 @@ class Musical extends BaseChess {
     let $squares = $(`div[class*="square-${this.files[this.file]}"] img`);
     let context = this;
     $squares.each(function() {
-      let rank = parseInt($(this).parent().data("square")[1]);
-      let synth = context.synths[rank - 1];
-      synth.play();
-      setTimeout(() => {
-        synth.stop();
-      }, context.MUSIC_INTERVAL / 2 - synth.release * 1000);
+      // DRUM VERSION
+      let piece = $(this).data('piece')[1].toLowerCase();
+      context.drums[piece].currentTime = 0;
+      context.drums[piece].play();
+
+      // SYNTH VERSION
+      // let rank = parseInt($(this).parent().data("square")[1]);
+      // let synth = context.synths[rank - 1];
+      // synth.play();
+      // setTimeout(() => {
+      // synth.stop();
+      // }, context.MUSIC_INTERVAL / 2 - synth.release * 1000);
     });
     this.file = (this.file + 1) % this.files.length;
   }
