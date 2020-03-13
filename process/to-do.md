@@ -24,6 +24,10 @@
 
 ## MUSICAL
 
+- ~~__SOUNDS SHIT__ Basic tone matrix prototype~~
+
+- Square by square for a melody, with per-piece tones? Per color synths?
+
 ## TRACES / LEWITT
 
 - ~~Get a basic prototype working~~
