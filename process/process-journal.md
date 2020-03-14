@@ -127,3 +127,21 @@ That being the case I need some new ideas. Well?
 - __EVERYBODY__. You have to move every piece before you can re-move them. This is a known variant already though. Boring.
 - __DONNE__. No man is an island. Any piece moved such that it has no neighbours vanishes. (Can those neighbours by the opposite color? Not really going by the sentiment of the verse which is about people supporting you which isn't what the opposite side is doing)
 - __CO-OP__. What would it take for chess to be a co-op game with a shared objective?
+
+---
+
+## How about chessquers? (Friday, 13 March 2020, 20:10PM)
+
+I see there's already a chesskers ([website](http://www.chesskers.com/)), but it's a hyrbidization in which you have both kinds of pieces on the board.
+
+What about a chess where captures have to involve a jump and you could potentially capture multiple pieces in a row on a single capture? You'd have to be adjacent I suppose? Doesn't make sense to jump someone from a distance? And there has to be a space on the other side of them. I quite like this concept? Has it been thought of? Doesn't _seem_ to be out there on a cursory look?
+
+Basically this would be chess, but captures work like checkers including multiples jumps. But you have to be next to a piece to capture it, because it seems dumb to have a run-up? Or actually maybe that's funnier... you approach, then jump, and maybe jump again.
+
+Are jumps compulsory? That interacts with the question of adjacency. Forced capture is a thing, so I guess that needs to be in there. Just if there's a capture you only see the capture moves.
+
+I guess it's possible to trial both the version of captures from afar followed by jumps and the adjacent only version. If you capture from afar does that mean you can do the same on subsequent jumps? That seems kind of insane? Most signs point toward adjacency rules I think.
+
+Also I suspect this could suck a bit in terms of the tendency of chess pieces to bunch up? But perhaps not. Worth a go anyway, and it's funny, and it means you can protect a piece just by putting another piece behind it (or diagonal, or beside). So there's a lot to like there actually.
+
+Will it be hard to implement? Probably. But I can do it.
