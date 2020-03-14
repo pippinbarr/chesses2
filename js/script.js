@@ -46,6 +46,9 @@ function chessesSetup() {
     {
       title: "3D",
     },
+    {
+      title: "1D",
+    },
   ];
   menu.sort((a, b) => a.title < b.title ? -1 : 1);
 
@@ -106,6 +109,10 @@ function menuClicked() {
 
     case '3D':
       chess = new ThreeDee();
+      break;
+
+    case '1D':
+      chess = new OneDee();
       break;
   }
 
