@@ -148,9 +148,13 @@ Will it be hard to implement? Probably. But I can do it.
 
 ---
 
-# Draughts (Monday, 16 March 2020, 16:51PM)
+# Draughts progress and a likeable eight(Monday, 16 March 2020, 16:51PM)
+
+## Draughts
 
 Made some progress on the draughts version of chess. Specifically, I implemented the basic capture in which a (linear) piece jumps over the piece to a free space on the other side (and the capture isn't offered otherwise). It feels pretty good, and definitely worth pursuing further just for the novelty of it. Knights and en passant are my biggest worries right this moment, but I'll cross that bridge when I have a proper implementation of the easiest pieces that works.
+
+## A likeable eight
 
 With draughts (what's a name for this?) I think I'm back to 8 I can be happy with:
 

@@ -61,6 +61,7 @@
 - Deal with knights
 - En passant???
 - Other weird shit???
+- Multiple jumps
 
 ## ABRAHAM / I CUT YOU CHOOSE
 
