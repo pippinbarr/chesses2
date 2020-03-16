@@ -2,7 +2,8 @@
 
 const SQUARE = ".square-55d63";
 const PIECE = ".piece-417db";
-const RANKS = "abcdefgh";
+const FILES = "abcdefgh";
+const RANKS = "12345678";
 
 // The sound effects
 const placeSFX = new Howl({
