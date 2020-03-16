@@ -145,3 +145,22 @@ I guess it's possible to trial both the version of captures from afar followed b
 Also I suspect this could suck a bit in terms of the tendency of chess pieces to bunch up? But perhaps not. Worth a go anyway, and it's funny, and it means you can protect a piece just by putting another piece behind it (or diagonal, or beside). So there's a lot to like there actually.
 
 Will it be hard to implement? Probably. But I can do it.
+
+---
+
+# Draughts (Monday, 16 March 2020, 16:51PM)
+
+Made some progress on the draughts version of chess. Specifically, I implemented the basic capture in which a (linear) piece jumps over the piece to a free space on the other side (and the capture isn't offered otherwise). It feels pretty good, and definitely worth pursuing further just for the novelty of it. Knights and en passant are my biggest worries right this moment, but I'll cross that bridge when I have a proper implementation of the easiest pieces that works.
+
+With draughts (what's a name for this?) I think I'm back to 8 I can be happy with:
+
+- 3D
+- Reversal
+- Samsara
+- LeWitt
+- Fog
+- Musical
+- Draughts
+- XR
+
+With musical still needing some attention to be actually reasonable, but I think it'll be strong enough to include just because it's pretty fun as it stands. Maybe bigger note distances makes sense to get more of a chording effect on multiple pieces played simultaneously or something.
