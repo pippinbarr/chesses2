@@ -148,7 +148,7 @@ Will it be hard to implement? Probably. But I can do it.
 
 ---
 
-# Draughts progress and a likeable eight(Monday, 16 March 2020, 16:51PM)
+# Draughts progress and a likeable eight (Monday, 16 March 2020, 16:51PM)
 
 ## Draughts
 
