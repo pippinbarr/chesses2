@@ -158,8 +158,14 @@ class Draughts extends BaseChess {
     // If there's no square specified, this is just wanting all possible moves
     if (square === undefined) return moves;
 
-    // Select all captures that are adjacent and have a space to jump to
-    let captures = this.getCaptures(moves, square);
+    if (moves.length === 0) return moves;
+
+    let captures = [];
+    // We can't capture with a knight
+    if (this.game.get(moves[0].from).type !== 'n') {
+      // Select all captures that are adjacent and have a space to jump to
+      captures = this.getCaptures(moves, square);
+    }
 
     // If there are any captures, they're the only possible move
     if (captures.length > 0) return captures;

@@ -59,12 +59,14 @@
 - ~~Improve prototype to display actual destination square, not capture square~~
 - ~~__VERY SATISFYING. QUEEN IS FUCKING SCARY.__ Basic multiple jumps~~
 - ~~__FOR NOW: NO CAPTURES WITH KNIGHTS__ Deal with knights~~
+- ~~Remove captures for knights~~
 
-- Remove captures for knights
 - En passant???
 - Check and checkmate?!?!?!?!
 - Other weird shit???
 - Should you force capturing moves against all other movement forms? Or only enforce on a piece once it's selected for movement? (Suspect the other version could end up being too much like suicide?)
+- Think a saw a bug where a move made a sound but didn't execute?
+
 
 ## ABRAHAM / I CUT YOU CHOOSE
 
