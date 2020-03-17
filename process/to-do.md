@@ -57,11 +57,13 @@
 
 - ~~__IT'S KIND OF HARD BUT WORTH DOING__ Start prototype and see if it's super hard or not~~
 - ~~Improve prototype to display actual destination square, not capture square~~
-- Multiple jumps
+- ~~__VERY SATISFYING. QUEEN IS FUCKING SCARY.__ Basic multiple jumps~~
 
 - Deal with knights
 - En passant???
+- Check and checkmate?!?!?!?!
 - Other weird shit???
+- Should you force capturing moves against all other movement forms? Or only enforce on a piece once it's selected for movement? (Suspect the other version could end up being too much like suicide?)
 
 ## ABRAHAM / I CUT YOU CHOOSE
 
