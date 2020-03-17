@@ -9,17 +9,86 @@ class Draughts extends BaseChess {
     this.currentMove = {
       from: undefined,
       to: undefined,
-      capture: undefined
+      captureSquare: undefined
     }
   }
 
-  // The process of a move is:
-  // squareClicked() calls getMoves()
+  squareClicked(event) {
+    // Find out the notation of the square and also the element representing the piece
+    let square = $(event.currentTarget).attr('data-square');
+    let piece = $(event.currentTarget).find(PIECE);
+    let validPiece = (piece.length !== 0 && piece.attr('data-piece').indexOf(this.game.turn()) !== -1);
 
-  // move(from, to) {
-  //   // Get the move
-  //   let move = super.move(from, to);
-  // }
+    if (this.from === null && validPiece) {
+      // We haven't selected a move yet + a piece of the correct colour was selected
+      this.from = square;
+      this.currentMove.from = square;
+      let moves = this.getMoves(square);
+      if (moves.length === 0) {
+        $(`.square-${square} ${PIECE}`).effect('shake', {
+          times: 1,
+          distance: 2
+        }, 50, () => {});
+        this.from = null;
+        this.currentMove.from = null;
+        this.clearHighlights();
+        return;
+      }
+      this.highlightMoves(moves);
+    }
+    else if (this.from !== null) {
+      // We have already selected a square to move from (and thus a piece)
+      if (validPiece) {
+        // But now we're selecting another valid piece to move, so we should rehilight
+        let moves = this.getMoves(square);
+        if (moves.length === 0) {
+          $(`.square-${square} ${PIECE}`).effect('shake', {
+            times: 1,
+            distance: 2
+          }, 50, () => {});
+          this.from = null;
+          this.currentMove.from = null;
+          this.clearHighlights();
+          return;
+        }
+        else {
+          this.from = square;
+          this.currentMove.from = square;
+        }
+        this.highlightMoves(moves);
+      }
+      else if ($(event.currentTarget).hasClass('highlight1-32417')) {
+        let to = $(event.currentTarget).attr('data-square');
+        let captureSquare = $(event.currentTarget).data('captureSquare');
+        console.log(captureSquare);
+        if (captureSquare) to = captureSquare;
+        console.log(this.from, to);
+        this.move(this.from, to);
+      };
+    }
+  }
+
+  highlightMoves(moves) {
+    this.clearHighlights();
+
+    // exit if there are no moves available for this square
+    if (moves.length === 0) return 0;
+
+    moves.forEach(move => {
+      let highlightSquare = move.to;
+
+      if (move.flags.indexOf("c") >= 0) {
+        // It's a capture, so we need to highlight the square to the other side
+        highlightSquare = this.getNextSpace(move.from, move.to);
+        // And the highlighted square needs to remember the actual move square!
+        $(`.square-${highlightSquare}`).data('captureSquare', move.to);
+      }
+      this.highlight(highlightSquare);
+    });
+
+    return moves.length;
+  }
+
   move(from, to) {
     // If it's a capture, handle our special case
     if (this.game.get(to)) {
@@ -51,17 +120,20 @@ class Draughts extends BaseChess {
   getMoves(square) {
     let moves = super.getMoves(square);
 
+    // If there's no square specified, this is just wanting all possible moves
     if (square === undefined) return moves;
 
+    // Select all non-captures
     let nonCaptures = moves.filter(a => a.flags !== "c");
-    let captures = moves.filter(a => a.flags.indexOf("c") !== -1);
 
-    for (let i = captures.length - 1; i >= 0; i--) {
-      let nextSpace = this.getNextSpace(square, captures[i].to)
-      if (!this.adjacent(square, captures[i].to) || nextSpace === undefined) {
-        captures.splice(i, 1);
-      }
-    }
+    // Select all captures that are adjacent and have a space to jump to
+    let captures = moves.filter(a => {
+      return a.flags.indexOf("c") >= 0 &&
+        this.adjacent(square, a.to) &&
+        this.getNextSpace(square, a.to);
+    });
+
+    // Return the resulting total set
     return [...nonCaptures, ...captures];
   }
 
@@ -73,7 +145,6 @@ class Draughts extends BaseChess {
 
     for (let i = rankFrom - 1; i <= rankFrom + 1; i++) {
       for (let j = fileFrom - 1; j <= fileFrom + 1; j++) {
-        if (i === rankFrom && j === fileFrom) continue;
         if (i === rankTo && j === fileTo) return true;
       }
     }
