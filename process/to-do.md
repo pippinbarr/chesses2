@@ -2,6 +2,10 @@
 
 - Add an information window to explain any given game
 
+# ~~AI?~~
+
+- Do I dare implement some kind of primitive AI? Do I have the right kind of possibilities for lookahead? I suspect it's just not worth it as per usual, too hard, not enough part of the idea. Let people play themselves.
+
 # The variations
 
 ## REVERSAL
@@ -15,13 +19,6 @@
 
 - ~~Make a shitty prototype~~
 - ~~Make a better prototype~~
-
-## LIFE
-
-- ~~Shitty prototype~~
-- ~~__SUSPECT THIS IS BETTER__ Try step per turn (after turn completes)~~
-
-- Different values? It's really not working terribly well. DisapPOINTed.
 
 ## XR (Cross-Reality)
 
@@ -60,22 +57,26 @@
 - ~~__VERY SATISFYING. QUEEN IS FUCKING SCARY.__ Basic multiple jumps~~
 - ~~__FOR NOW: NO CAPTURES WITH KNIGHTS__ Deal with knights~~
 - ~~Remove captures for knights~~
+- ~~En passant???~~
+- ~~__ALSO JUST TOO CONFUSING TO ONLY BE ALLOWED TO SELECT PIECES WHICH CAN CAPTURE AND REDUCES THE MOVE SET TOO MUCH__ Should you force capturing moves against all other movement forms? Or only enforce on a piece once it's selected for movement? (Suspect the other version could end up being too much like suicide?)~~
 
-- En passant???
 - Check and checkmate?!?!?!?!
 - Other weird shit???
-- Should you force capturing moves against all other movement forms? Or only enforce on a piece once it's selected for movement? (Suspect the other version could end up being too much like suicide?)
 - Think a saw a bug where a move made a sound but didn't execute?
 
+## ~~LIFE~~
 
-## ABRAHAM / I CUT YOU CHOOSE
+- ~~Shitty prototype~~
+- ~~__SUSPECT THIS IS BETTER__ Try step per turn (after turn completes)~~
+
+- Different values? It's really not working terribly well. DisapPOINTed.
+
+## ~~ABRAHAM / I CUT YOU CHOOSE~~
 
 - Starting to feel like this one just doesn't work...? Like, whichever way it might lead to super boring games. If you choose the piece for your opponent you'll obviously just choose useless pieces. If you choose the move you'll obviously just choose the worst move. So you'd end up with just a bad game since neither side of the equation really give decisive good/bad control over the game. Sad.
 
-## ENHANCE
+## ~~ENHANCE~~
 
-## SKILLS
+## ~~SKILLS~~
 
-## GREYS
-
-# AI?
+## ~~GREYS~~
