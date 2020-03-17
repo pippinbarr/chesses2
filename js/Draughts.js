@@ -74,7 +74,7 @@ class Draughts extends BaseChess {
           this.currentMove.captureSquare = captureSquare;
           to = captureSquare;
         }
-        this.move(this.from, to);
+        this.move(this.from, this.currentMove.to);
       }
       else {
         console.log("NOT A VALID PIECE, NOT A HIGHLIGHTED SQUARE");
@@ -91,11 +91,20 @@ class Draughts extends BaseChess {
     moves.forEach(move => {
       let highlightSquare = move.to;
 
-      if (move.flags.indexOf("c") >= 0) {
+      if (this.isCapture(move)) {
         // It's a capture, so we need to highlight the square to the other side
         highlightSquare = this.getNextSpace(move.from, move.to);
         // And the highlighted square needs to remember the actual move square!
         $(`.square-${highlightSquare}`).data('captureSquare', move.to);
+        if (move.flags.indexOf("e") >= 0) {
+          let dy = RANKS.indexOf(move.to[1]) - RANKS.indexOf(move.from[1]);
+          let captureRank = RANKS.indexOf(parseInt(move.to[1]) - dy);
+          let captureFile = FILES.indexOf(move.to[0]);
+          let captureSquare = `${FILES[captureFile]}${RANKS[captureRank]}`;
+          console.log(captureSquare);
+          $(`.square-${highlightSquare}`).data('captureSquare', captureSquare);
+        }
+
       }
       this.highlight(highlightSquare);
     });
@@ -106,10 +115,11 @@ class Draughts extends BaseChess {
   move(from, to) {
     // If it's a capture, handle our special case
     // This won't work for en passant. There are a lot of problems here man.
-    if (this.game.get(to)) {
-      this.game.remove(to);
-      this.game.put(this.game.get(from), this.getNextSpace(from, to));
-      this.game.remove(from);
+    if (this.currentMove.captureSquare) {
+      console.log("HANDLING CAPTURE MOVE")
+      this.game.remove(this.currentMove.captureSquare);
+      this.game.put(this.game.get(from), this.currentMove.to);
+      this.game.remove(this.currentMove.from);
 
       this.disableInput();
 
@@ -178,12 +188,12 @@ class Draughts extends BaseChess {
   }
 
   getNonCaptures(moves, square) {
-    return moves.filter(a => a.flags !== "c");
+    return moves.filter(a => !this.isCapture(a));
   }
 
   getCaptures(moves, square) {
     return moves.filter(a => {
-      return a.flags.indexOf("c") >= 0 &&
+      return this.isCapture(a) &&
         this.adjacent(square, a.to) &&
         this.getNextSpace(square, a.to);
     });
@@ -226,6 +236,10 @@ class Draughts extends BaseChess {
     }
 
     return checkSquare;
+  }
+
+  isCapture(move) {
+    return (move.flags.indexOf("c") >= 0 || move.flags.indexOf("e") >= 0);
   }
 
 }
