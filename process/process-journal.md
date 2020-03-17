@@ -168,3 +168,17 @@ With draughts (what's a name for this?) I think I'm back to 8 I can be happy wit
 - XR
 
 With musical still needing some attention to be actually reasonable, but I think it'll be strong enough to include just because it's pretty fun as it stands. Maybe bigger note distances makes sense to get more of a chording effect on multiple pieces played simultaneously or something.
+
+---
+
+## Draught Knights (Tuesday, 17 March 2020, 11:01AM)
+
+Well shit, knights are hard. I'm not seeing a super clear way that they can capture. If they have to be adjacent to the captured piece, fine, but then their jump can be seen as passing over multiple squares which may or may not be clear and which may or may not imply a capture?
+
+A radical "solution" I'm contemplating it to disallow knight captures in the game with the argument that because they more nonlinearly, they don't meet the requirements for a checkers-style capture (that you jump directly over a piece to the "other side"). They'd still potentially be a useful piece because they can force a capture (I suppose), but more obviously they can serve as guards against capture by taking up a square.
+
+That's kind of the "clearest" argument I can think of, whereas arguments for how a knight would successfully capture seem really bizarre and hard to explain to myself, let along a person playing the game and probably not reading any of the instructions?
+
+Was suggested on Twitter by @meanporridge that a knight could capture "both" pieces along its trajectory. Gets a bit quantum though... how do you choose which "L" the knight is traveling in? This seems to lead to a lot of trouble.
+
+So I'm leaning toward: no captures for knights because they just don't move in the right way.

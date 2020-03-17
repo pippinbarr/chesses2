@@ -58,8 +58,9 @@
 - ~~__IT'S KIND OF HARD BUT WORTH DOING__ Start prototype and see if it's super hard or not~~
 - ~~Improve prototype to display actual destination square, not capture square~~
 - ~~__VERY SATISFYING. QUEEN IS FUCKING SCARY.__ Basic multiple jumps~~
+- ~~__FOR NOW: NO CAPTURES WITH KNIGHTS__ Deal with knights~~
 
-- Deal with knights
+- Remove captures for knights
 - En passant???
 - Check and checkmate?!?!?!?!
 - Other weird shit???
