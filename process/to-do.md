@@ -56,12 +56,12 @@
 ## CHESSQUERS/DRAUGHTS
 
 - ~~__IT'S KIND OF HARD BUT WORTH DOING__ Start prototype and see if it's super hard or not~~
+- ~~Improve prototype to display actual destination square, not capture square~~
+- Multiple jumps
 
-- Improve prototype to display actual destination square, not capture square
 - Deal with knights
 - En passant???
 - Other weird shit???
-- Multiple jumps
 
 ## ABRAHAM / I CUT YOU CHOOSE
 

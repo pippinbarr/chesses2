@@ -40,15 +40,15 @@ function chessesSetup() {
     {
       title: "MUSICAL",
     },
-    {
-      title: "LIFE",
-    },
+    // {
+    //   title: "LIFE",
+    // },
     {
       title: "3D",
     },
-    {
-      title: "1D",
-    },
+    // {
+    //   title: "1D",
+    // },
     {
       title: "DRAUGHTS"
     },
