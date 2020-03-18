@@ -25,6 +25,28 @@ This is the style file for this project.
   background-color: rgba(255,255,0,1);
 }
 
+.info {
+  font-size: .75em;
+  float: right;
+  opacity: 0;
+  text-align: center;
+  letter-spacing: normal;
+  margin-right: 1em;
+}
+
+.info:hover {
+  transform: rotate(10deg);
+}
+
+.info-panel {
+  background-color: black;
+  color: white;
+  letter-spacing: normal;
+  font-size: 0.75em;
+  text-align: center;
+  line-height: normal;
+}
+
 /* LEWITT */
 
 canvas {
@@ -60,6 +82,7 @@ body {
 }
 
 #menu {
+  /* width: 100%; */
 }
 
 #title {

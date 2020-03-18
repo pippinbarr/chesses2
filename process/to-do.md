@@ -22,6 +22,7 @@
 - ~~Make a better prototype~~
 
 - Add turn taking interface
+- Reveal full board on checkmate (fade all fog away)
 
 ## XR (Cross-Reality)
 
@@ -35,7 +36,7 @@
 
 - Improve the sound though
 
-## TRACES / LEWITT
+## LEWITT
 
 - ~~Get a basic prototype working~~
 - ~~__IT'S GREAT__ Consider p5.scribble~~

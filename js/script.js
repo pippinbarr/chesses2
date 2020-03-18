@@ -24,46 +24,71 @@ function chessesSetup() {
 
   let menu = [{
       title: "SAMSARA",
+      info: "Pieces go through the great chain of existence as they are moved."
     },
     {
       title: "REVERSAL",
+      info: "Pieces change sides with every move."
     },
     {
       title: "FOG",
+      info: "Each player can only see what their pieces can see."
     },
     {
       title: "XR",
+      info: "A cross-reality application giving you the ability to use real chess pieces on a virtual board. Tip over your laptop, monitor, phone, or tablet and play now!"
     },
     {
       title: "LEWITT",
+      info: "A drawing created by the movements of chess pieces in the spirit of Sol LeWitt's wall drawings."
     },
     {
       title: "MUSICAL",
+      info: "A melody is played using the current game position as its score."
     },
-    // {
-    //   title: "LIFE",
-    // },
     {
       title: "3D",
+      info: "Chess has finally entered the third dimension!"
     },
-    // {
-    //   title: "1D",
-    // },
     {
-      title: "DRAUGHTS"
+      title: "DRAUGHTS",
+      info: "What if chess, but checkers capture rules?"
     },
   ];
   menu.sort((a, b) => a.title < b.title ? -1 : 1);
 
   for (let i = 0; i < menu.length; i++) {
-    $('<div>')
+    let $menuItem = $('<div>')
       .addClass('menu-item active')
       .attr('id', menu[i].title)
-      .text(menu[i].title)
+      .html(`${menu[i].title}<span class="info">ⓘ</span>`)
       .data('game', menu[i].title)
       .on('click', menuClicked)
-      .appendTo('#menu')
+      .appendTo('#menu');
+
+    let $infoPanel = $('<div>')
+      .addClass('info-panel')
+      .text(menu[i].info)
+      .hide()
+      .appendTo('#menu');
   }
+
+  $('.menu-item').hover(function() {}, function() {
+    $(this).children('.info').css('opacity', 0);
+  });
+
+  $('.info').on('click', function(e) {
+    e.stopPropagation();
+    if (!$(this).parent().next('.info-panel').is(':visible')) {
+      $('.menu-item').not($(this).parent()).slideUp(() => {
+        $(this).parent().next('.info-panel').slideDown();
+      });
+    }
+    else {
+      $(this).parent().next('.info-panel').slideUp();
+    }
+
+  });
 }
 
 function titleClicked() {
@@ -139,4 +164,7 @@ function menuClicked() {
     });
   });
   $('#message').slideUp();
+
+  $(`#${$(this).data('game')}`).children('.info').css('opacity', 1);
+
 }
