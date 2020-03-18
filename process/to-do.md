@@ -40,8 +40,8 @@
 - ~~Get a basic prototype working~~
 - ~~__IT'S GREAT__ Consider p5.scribble~~
 - ~~__NO NEED__ Consider writing your own line-drawing code with noise()~~
+- ~~Fix pixel density of saved image?~~
 
-- Fix pixel density of saved image?
 - Provide the option to save rather than doing it instantly (since on my phone at least it leads to just a weird screen with the image and it's unclear how to save it)
 
 ## SAMSARA

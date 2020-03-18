@@ -140,12 +140,3 @@ function menuClicked() {
   });
   $('#message').slideUp();
 }
-
-function setup() {
-  createCanvas(640, 640);
-  $p5Canvas = $('canvas');
-  // $p5Canvas.detach();
-  $p5Canvas.hide();
-
-  background(255, 0, 0);
-}

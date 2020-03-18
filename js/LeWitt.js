@@ -66,3 +66,14 @@ class LeWitt extends BaseChess {
   }
 
 }
+
+// For LeWitt's p5 canvas
+function setup() {
+  pixelDensity(1);
+  createCanvas(640, 640);
+  $p5Canvas = $('canvas');
+  // $p5Canvas.detach();
+  $p5Canvas.hide();
+
+  background(255, 0, 0);
+}
