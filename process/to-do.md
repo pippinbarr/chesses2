@@ -11,14 +11,17 @@
 ## REVERSAL
 
 - ~~Make basic working version~~
+- ~~What happens if you move a king? (Nothing.)~~
 
-- Think about check and checkmate
-- What happens if you move a king?
+- Think about check and checkmate (can you move a piece such that its final position would put you in check? Would have to be able to undo moves... ugh)
+
 
 ## FOG
 
 - ~~Make a shitty prototype~~
 - ~~Make a better prototype~~
+
+- Add turn taking interface
 
 ## XR (Cross-Reality)
 
@@ -27,8 +30,10 @@
 ## MUSICAL
 
 - ~~__SOUNDS SHIT__ Basic tone matrix prototype~~
+- ~~__TRIED THIS AND IT'S BETTER__ Square by square for a melody, with per-piece tones? Per color synths?~~
+- ~~__I THINK THE PER SQUARE MELODY IS THE RIGHT CHOICE__ How to make this sound interesting enough?~~
 
-- Square by square for a melody, with per-piece tones? Per color synths?
+- Improve the sound though
 
 ## TRACES / LEWITT
 
@@ -42,9 +47,9 @@
 ## SAMSARA
 
 - ~~Make basic working version~~
+- ~~__NOTHING__ What happens if you move a king?~~
 
 - Think about check and checkmate
-- What happens if you move a king?
 
 ## 3D
 
