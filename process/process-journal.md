@@ -182,3 +182,13 @@ That's kind of the "clearest" argument I can think of, whereas arguments for how
 Was suggested on Twitter by @meanporridge that a knight could capture "both" pieces along its trajectory. Gets a bit quantum though... how do you choose which "L" the knight is traveling in? This seems to lead to a lot of trouble.
 
 So I'm leaning toward: no captures for knights because they just don't move in the right way.
+
+---
+
+## UI (Wednesday, 18 March 2020, 17:01PM)
+
+Spent a bit of time on the UI today, trying to get the info panel idea going. In feeling my way through it I decided it makes more sense to show the info panel only during the play of a specific game, but I'm concerned there would actually be room for it on the screen. Also currently the icon doesn't always fit on the screen. Hghghgh.
+
+At any rate, at least I'm feeling it out through the materials etc. etc. I suspect it might be necessary to throw an overlay on top of the board instead, with an x to close it before resuming play. That's relatively tidy and doesn't take up more screen real estate. Then would just have to fit the issue of the info button and where to place it. Could be literally as simple as reducing font sizes I suppose, though that's kinda lame.
+
+(By the by I also fixed pixel density in LeWitt, so that works better now. Still issues around mobile, notably prompting a save to camera roll or something.)
