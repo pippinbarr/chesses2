@@ -63,31 +63,29 @@ function chessesSetup() {
       .attr('id', menu[i].title)
       .html(`${menu[i].title}<span class="info">ⓘ</span>`)
       .data('game', menu[i].title)
+      .data('info', menu[i].info)
       .on('click', menuClicked)
-      .appendTo('#menu');
-
-    let $infoPanel = $('<div>')
-      .addClass('info-panel')
-      .text(menu[i].info)
-      .hide()
       .appendTo('#menu');
   }
 
-  $('.menu-item').hover(function() {}, function() {
-    $(this).children('.info').css('opacity', 0);
-  });
+  let $infoPanel = $('<div>')
+    .addClass('info-panel')
+    .appendTo('#game')
+
+  let $infoText = $('<div>')
+    .addClass('info-text')
+    .html("DRAUGHTS<p>What is this?</p>")
+    .appendTo($infoPanel);
 
   $('.info').on('click', function(e) {
     e.stopPropagation();
-    if (!$(this).parent().next('.info-panel').is(':visible')) {
-      $('.menu-item').not($(this).parent()).slideUp(() => {
-        $(this).parent().next('.info-panel').slideDown();
-      });
+    if (!$('.info-panel').is(':visible')) {
+      $('.info-text').html(`<p>${$(this).parent().data('info')}</p>`);
+      $('.info-panel').slideDown();
     }
     else {
-      $(this).parent().next('.info-panel').slideUp();
+      $('.info-panel').slideUp();
     }
-
   });
 }
 
@@ -95,6 +93,9 @@ function titleClicked() {
   $('.instruction').slideUp();
   $('#message').slideUp();
   $('#title').removeClass('active');
+  $('.info-panel').slideUp();
+  $('.info').stop().css('opacity', 0);
+
   $('#game').slideUp(() => {
     $('.menu-item').slideDown();
     $('#author').slideDown();
@@ -161,10 +162,13 @@ function menuClicked() {
     $('#game').slideDown(() => {
       // console.log("slid")
       $(this).find('.instruction').slideDown();
+      $(`#${$(this).data('game')} .info`).stop().animate({
+        opacity: 1
+      }, 1000);
     });
   });
   $('#message').slideUp();
 
-  $(`#${$(this).data('game')}`).children('.info').css('opacity', 1);
+
 
 }
