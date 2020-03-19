@@ -24,35 +24,35 @@ function chessesSetup() {
 
   let menu = [{
       title: "SAMSARA",
-      info: "Pieces go through the great chain of existence as they are moved."
+      // info: "Pieces go through the great chain of existence as they are moved."
     },
     {
       title: "REVERSAL",
-      info: "Pieces change sides with every move."
+      // info: "Pieces change sides with every move."
     },
     {
       title: "FOG",
-      info: "Each player can only see what their pieces can see."
+      info: "Each piece can see the square adjacent to it, as well as any squares it attacks. The view each player has is the combination of the views of all pieces. Take turns to play your moves and look away when your opponent is playing."
     },
     {
       title: "XR",
-      info: "A cross-reality application giving you the ability to use real chess pieces on a virtual board. Tip over your laptop, monitor, phone, or tablet and play now!"
+      info: "Cross-reality is the hottest reality! Get hyped about this cross-reality chess application! Use real chess pieces on a virtual board! Tip over your laptop, monitor, phone, or tablet and play this exciting hybrid game now!"
     },
     {
       title: "LEWITT",
-      info: "A drawing created by the movements of chess pieces in the spirit of Sol LeWitt's wall drawings."
+      info: "A drawing is built up through the movements of your chess pieces on the board. When the game ends, you can download an image of the drawing you have made together. Created in the spirit of Sol LeWitt's wall drawings."
     },
     {
       title: "MUSICAL",
-      info: "A melody is played using the current game position as its score."
+      // info: "A melody is played using the current game position as its score."
     },
     {
       title: "3D",
-      info: "Chess has finally entered the third dimension!"
+      // info: "Chess has finally entered the third dimension!"
     },
     {
       title: "DRAUGHTS",
-      info: "What if chess, but checkers capture rules?"
+      info: "Pieces can only capture adjacent pieces by jumping over them to a clear space, as in draughts or checkers. Because they do not move linearly, knights cannot capture anything at all. Win by forcing the opposing king into a situation where it cannot avoid being jumped."
     },
   ];
   menu.sort((a, b) => a.title < b.title ? -1 : 1);
@@ -162,9 +162,11 @@ function menuClicked() {
     $('#game').slideDown(() => {
       // console.log("slid")
       $(this).find('.instruction').slideDown();
-      $(`#${$(this).data('game')} .info`).stop().animate({
-        opacity: 1
-      }, 1000);
+      if ($(this).data('info')) {
+        $(`#${$(this).data('game')} .info`).stop().animate({
+          opacity: 1
+        }, 1000);
+      }
     });
   });
   $('#message').slideUp();

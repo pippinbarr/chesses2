@@ -1,6 +1,8 @@
 # General to-dos
 
-- Add an information window to explain any given game
+- ~~Add an information window to explain any given game~~
+
+- Make the actual info panel look better
 
 # ~~AI?~~
 
