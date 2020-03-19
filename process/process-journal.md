@@ -192,3 +192,13 @@ Spent a bit of time on the UI today, trying to get the info panel idea going. In
 At any rate, at least I'm feeling it out through the materials etc. etc. I suspect it might be necessary to throw an overlay on top of the board instead, with an x to close it before resuming play. That's relatively tidy and doesn't take up more screen real estate. Then would just have to fit the issue of the info button and where to place it. Could be literally as simple as reducing font sizes I suppose, though that's kinda lame.
 
 (By the by I also fixed pixel density in LeWitt, so that works better now. Still issues around mobile, notably prompting a save to camera roll or something.)
+
+---
+
+# Getting there (Thursday, 19 March 2020, 19:48PM)
+
+Now in a place where I have eight working games, as well as an informational UI that's not too gross to look at it.
+
+The key remaining issue across multiple games is making sure that the checkmate/game over stuff works properly, which means intervening at the right moment and sometimes perhaps being able to simulate moves (which is always very, very scary to think about).
+
+Basically it's a set of games I like, though, so I'm mostly positive. Just a set of kind of polishing activities remain. I can do this.

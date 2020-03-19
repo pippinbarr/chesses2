@@ -1,8 +1,7 @@
 # General to-dos
 
 - ~~Add an information window to explain any given game~~
-
-- Make the actual info panel look better
+- ~~Make the actual info panel look better~~
 
 # ~~AI?~~
 
@@ -15,7 +14,7 @@
 - ~~Make basic working version~~
 - ~~What happens if you move a king? (Nothing.)~~
 
-- Think about check and checkmate (can you move a piece such that its final position would put you in check? Would have to be able to undo moves... ugh)
+- Think about check and checkmate (can you move a piece such that its final position would put you in check? Would have to be able to undo moves... ugh no) - will have to allow for checkmate that occurs when you check yourself and the turn changes over
 
 
 ## FOG
@@ -52,7 +51,7 @@
 - ~~Make basic working version~~
 - ~~__NOTHING__ What happens if you move a king?~~
 
-- Think about check and checkmate
+- Think about check and checkmate (basically just need to check checkmate after the transformation...)
 
 ## 3D
 
