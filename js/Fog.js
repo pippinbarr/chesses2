@@ -20,11 +20,54 @@ class Fog extends BaseChess {
 
   // Override move since that's the key moment samsara happens
   moveCompleted() {
-    super.moveCompleted();
-    this.setupFog();
+    // super.moveCompleted();
+    this.from = null;
+    let moves = this.getMoves();
+    if (moves.length === 0) {
+      if (this.game.in_check()) {
+        // CHECKMATE
+        this.showResult(true, this.getTurn(false));
+      }
+      else {
+        // STALEMATE
+        this.showResult(false);
+      }
+    }
+    else {
+      if (this.gameOver) return;
+
+      $('.fog').css('opacity', 1);
+      this.flipTurn();
+      this.setupFog();
+      this.flipTurn();
+
+      setTimeout(() => {
+        $('.fog').animate({
+          opacity: 1
+        }, 1000, () => {
+          let turn = this.game.turn();
+          let color = turn === 'w' ? 'WHITE' : 'BLACK';
+          let offColor = turn === 'w' ? 'BLACK' : 'WHITE';
+          setTimeout(() => {
+            $('#fog-message').text(`${color}'S TURN. ${offColor} LOOK AWAY. ${color} PLAYER CLICK HERE WHEN READY.`).slideDown();
+            $('#fog-message').one('click', () => {
+              $('#fog-message').slideUp();
+              this.changeTurn();
+              this.hideMessage();
+            })
+          }, 500);
+        });
+      }, 2000);
+    }
+
   }
 
-  setupFog() {
+  changeTurn() {
+    this.setupFog();
+    super.changeTurn();
+  }
+
+  setupFog(color) {
     // Add fog to every square (we'll adjust it as appropriate)
     $(`${SQUARE} .fog`).css('opacity', 1);
 

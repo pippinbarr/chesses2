@@ -23,6 +23,8 @@
 - ~~Make a better prototype~~
 
 - Add turn taking interface
+- Consider fancy turn-taking fog stuff like fading the fog to the current situation
+- Consider showing fog result of move before switching turns
 - Reveal full board on checkmate (fade all fog away)
 
 ## XR (Cross-Reality)
