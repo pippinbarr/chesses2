@@ -40,29 +40,28 @@ class LeWitt extends BaseChess {
     stroke(0, 150);
     strokeWeight(2);
     this.scribble.scribbleLine(x1, y1, x2, y2);
+  }
 
+  showResult(win, color) {
+    super.showResult(win, color);
     if (this.game.game_over()) {
-      this.save();
+      this.showDrawing();
     }
   }
 
-  save() {
-    loadPixels();
-
-    let lines = createImage(width, height);
-    lines.loadPixels();
-    for (let i = 0; i < width; i++) {
-      for (let j = 0; j < height; j++) {
-        lines.set(i, j, get(i, j));
-      }
-    }
-
-    lines.updatePixels();
-
-    background(255);
-    blend(lines, 0, 0, width, height, 0, 0, width, height, BLEND);
-
-    saveCanvas();
+  showDrawing() {
+    // Create a white background and insert it under the canvas so we see a "drawing"
+    let $bg = $("<div>")
+      .css({
+        width: $("#board").width(),
+        height: $("#board").height(),
+        backgroundColor: "white",
+        zIndex: 50,
+        position: "absolute",
+        top: 0,
+        left: 0
+      })
+      .appendTo("#board");
   }
 
 }
@@ -74,6 +73,4 @@ function setup() {
   $p5Canvas = $('canvas');
   // $p5Canvas.detach();
   $p5Canvas.hide();
-
-  background(255, 0, 0);
 }

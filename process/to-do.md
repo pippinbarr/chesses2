@@ -38,6 +38,7 @@
 - ~~__TRIED THIS AND IT'S BETTER__ Square by square for a melody, with per-piece tones? Per color synths?~~
 - ~~__I THINK THE PER SQUARE MELODY IS THE RIGHT CHOICE__ How to make this sound interesting enough?~~
 
+- Fix the sound going on when you return to the menu
 - Improve the sound though
 
 ## LEWITT
@@ -46,8 +47,9 @@
 - ~~__IT'S GREAT__ Consider p5.scribble~~
 - ~~__NO NEED__ Consider writing your own line-drawing code with noise()~~
 - ~~Fix pixel density of saved image?~~
+- ~~__TOO HARD AND TOO WEIRD ON MOBILE, PLUS I FEEL I CAN ARGUE THAT THE DRAWING IT MADE IN SITU AND YOU SHOULDN'T TREAT IT AS SOMETHING TO SAVE SEPARATE FROM THAT__ Provide the option to save rather than doing it instantly (since on my phone at least it leads to just a weird screen with the image and it's unclear how to save it)~~
 
-- Provide the option to save rather than doing it instantly (since on my phone at least it leads to just a weird screen with the image and it's unclear how to save it)
+- Consider the timing of the drawing version appearing relative to game over
 
 ## SAMSARA
 
