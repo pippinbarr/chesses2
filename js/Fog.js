@@ -152,6 +152,14 @@ class Fog extends BaseChess {
     }
   }
 
+  showResult(win, color) {
+    super.showResult(win, color);
+    $(`.fog`).animate({
+      opacity: 0
+    }, 5000);
+  }
+
+
   see(square, animate) {
     if (!animate) {
       let opacity = parseFloat(square.children('.fog').css('opacity'));
