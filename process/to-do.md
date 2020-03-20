@@ -56,8 +56,7 @@
 
 - ~~Make basic working version~~
 - ~~__NOTHING__ What happens if you move a king?~~
-
-- Think about check and checkmate (basically just need to check checkmate after the transformation...)
+- ~~__IT WORKS AS TESTED__ Think about check and checkmate (basically just need to check checkmate after the transformation...)~~
 
 ## 3D
 
