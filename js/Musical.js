@@ -20,14 +20,18 @@ class Musical extends BaseChess {
 
     this.MUSIC_INTERVAL = 100;
     this.synths = [];
-    this.frequencies = {
-      p: 220,
-      n: 246.94,
-      b: 277.18,
-      r: 293.66,
-      q: 329.63,
-      k: 369.99
+    this.volumes = {
+      p: 1 / 10,
+      n: 3 / 10,
+      b: 3 / 10,
+      r: 5 / 10,
+      q: 9 / 10,
+      k: 10 / 10
     };
+
+    this.frequencies = [
+      220, 277.18, 329.63, 440, 554.37, 659.25, 880, 1108.73
+    ];
 
     this.whiteSynth = new Pizzicato.Sound({
       source: 'wave',
@@ -42,7 +46,7 @@ class Musical extends BaseChess {
     this.blackSynth = new Pizzicato.Sound({
       source: 'wave',
       options: {
-        type: 'square',
+        type: 'sine',
         frequency: 0,
         attack: 0.1,
         release: 0.1
@@ -67,11 +71,13 @@ class Musical extends BaseChess {
     let piece = this.game.get(square);
     if (piece) {
       if (piece.color === 'w') {
-        this.whiteSynth.frequency = this.frequencies[piece.type];
+        this.whiteSynth.frequency = this.frequencies[this.file];
+        this.whiteSynth.volume = this.volumes[piece.type];
         this.whiteSynth.play();
       }
       else {
-        this.blackSynth.frequency = this.frequencies[piece.type];
+        this.blackSynth.frequency = this.frequencies[this.file];
+        this.blackSynth.volume = this.volumes[piece.type];
         this.blackSynth.play();
       }
     }
