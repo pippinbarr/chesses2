@@ -22,7 +22,7 @@ class Fog extends BaseChess {
       $('#fog-message').text(`${color}'S TURN. ${offColor} LOOK AWAY. ${color} PLAYER CLICK HERE WHEN READY.`).slideDown();
       $('#fog-message').one('click', () => {
         $('#fog-message').slideUp();
-        this.setupFog();
+        this.setupFog(false);
         this.hideMessage();
       })
     }, 500);
@@ -51,7 +51,7 @@ class Fog extends BaseChess {
 
       $('.fog').css('opacity', 1);
       this.flipTurn();
-      this.setupFog();
+      this.setupFog(false);
       this.flipTurn();
 
       setTimeout(() => {
@@ -76,13 +76,19 @@ class Fog extends BaseChess {
   }
 
   changeTurn() {
-    this.setupFog();
+    this.setupFog(false);
     super.changeTurn();
   }
 
-  setupFog(color) {
+  setupFog(animate) {
     // Add fog to every square (we'll adjust it as appropriate)
-    $(`${SQUARE} .fog`).css('opacity', 1);
+    if (!animate) $(`${SQUARE} .fog`).css('opacity', 1);
+
+    if (animate) {
+      $(SQUARE).each(function() {
+        $(this).data('targetOpacity', 1);
+      });
+    }
 
     // Remember whose turn it is
     const turn = this.game.turn();
@@ -95,7 +101,7 @@ class Fog extends BaseChess {
     // Remove fog from every square involved in any piece's move
     // (including start position)
     moves.forEach((move) => {
-      this.see($(`.square-${move.to} .fog`));
+      this.see($(`.square-${move.to}`), animate);
     });
 
     let context = this;
@@ -109,7 +115,8 @@ class Fog extends BaseChess {
         if (pieceColor === turn) {
           // Make the square the piece is on visible (even if it can't move)
           // $(`.square-${square}`).removeClass('fog');
-          $(`.square-${square} .fog`).css('opacity', 0);
+          if (!animate) $(`.square-${square} .fog`).css('opacity', 0);
+          if (animate) $(`.square-${square}`).data('targetOpacity', 0);
           // context.see($(`.square-${square} .fog`));
 
           // Make the squares around the piece visible
@@ -123,24 +130,40 @@ class Fog extends BaseChess {
           const downRight = `${RANKS[RANKS.indexOf(rank)+1]}${file-1}`;
           const left = `${RANKS[RANKS.indexOf(rank)-1]}${file}`;
           const right = `${RANKS[RANKS.indexOf(rank)+1]}${file}`;
-          context.see($(`.square-${up} .fog`));
-          context.see($(`.square-${down} .fog`));
-          context.see($(`.square-${left} .fog`));
-          context.see($(`.square-${right} .fog`));
-          context.see($(`.square-${upLeft} .fog`));
-          context.see($(`.square-${upRight} .fog`));
-          context.see($(`.square-${downLeft} .fog`));
-          context.see($(`.square-${downRight} .fog`));
+          context.see($(`.square-${up}`), animate);
+          context.see($(`.square-${down}`), animate);
+          context.see($(`.square-${left}`), animate);
+          context.see($(`.square-${right}`), animate);
+          context.see($(`.square-${upLeft}`), animate);
+          context.see($(`.square-${upRight}`), animate);
+          context.see($(`.square-${downLeft}`), animate);
+          context.see($(`.square-${downRight}`), animate);
 
         }
       }
     });
+
+    if (animate) {
+      $(SQUARE).each(function() {
+        $(this).children('.fog').animate({
+          opacity: $(this).data('targetOpacity')
+        }, 2000);
+      })
+    }
   }
 
-  see(square) {
-    let opacity = parseFloat(square.css('opacity'));
-    opacity -= 0.2;
-    square.css('opacity', opacity);
+  see(square, animate) {
+    if (!animate) {
+      let opacity = parseFloat(square.children('.fog').css('opacity'));
+      opacity -= 0.2;
+      square.children('.fog').css('opacity', opacity);
+    }
+    else {
+      let opacity = $(square).data('targetOpacity');
+      opacity -= 0.2;
+      if (opacity < 0) opacity = 0;
+      $(square).data('targetOpacity', opacity);
+    }
   }
 
 }
