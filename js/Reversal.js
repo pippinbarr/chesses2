@@ -27,4 +27,34 @@ class Reversal extends BaseChess {
     }, this.config.moveSpeed);
   }
 
+  moveCompleted() {
+    this.from = null;
+    this.flipTurn();
+    if (this.game.in_check()) {
+      // CHECKMATE
+      this.showResult(true, this.getTurn(false));
+      this.gameOver = true;
+      this.disableInput();
+    }
+
+    this.flipTurn();
+    let moves = this.getMoves();
+    if (moves.length === 0) {
+      if (this.game.in_check()) {
+        // CHECKMATE
+        this.showResult(true, this.getTurn(false));
+      }
+      else {
+        // STALEMATE
+        this.showResult(false);
+      }
+    }
+    else {
+      if (this.gameOver) return;
+      this.changeTurn();
+      this.hideMessage();
+    }
+  }
+
+
 }

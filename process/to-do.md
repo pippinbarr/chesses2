@@ -13,8 +13,7 @@
 
 - ~~Make basic working version~~
 - ~~What happens if you move a king? (Nothing.)~~
-
-- Think about check and checkmate (can you move a piece such that its final position would put you in check? Would have to be able to undo moves... ugh no) - will have to allow for checkmate that occurs when you check yourself and the turn changes over
+- ~~__IF YOU PUT YOURSELF IN CHECK FROM THE REVERSED PIECE YOU LOSE MY FRIEND__ Think about check and checkmate (can you move a piece such that its final position would put you in check? Would have to be able to undo moves... ugh no) - will have to allow for checkmate that occurs when you check yourself and the turn changes over~~
 
 
 ## FOG
