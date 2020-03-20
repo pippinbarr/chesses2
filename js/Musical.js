@@ -52,7 +52,7 @@ class Musical extends BaseChess {
     this.rank = 7;
     this.file = 0;
 
-    setInterval(() => {
+    this.playInterval = setInterval(() => {
       this.play();
     }, this.MUSIC_INTERVAL);
   }

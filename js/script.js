@@ -96,6 +96,12 @@ function titleClicked() {
   $('.info-panel').slideUp();
   $('.info').stop().css('opacity', 0);
 
+  if (chess instanceof Musical) {
+    clearInterval(chess.playInterval);
+    chess.whiteSynth.stop();
+    chess.blackSynth.stop();
+  }
+
   $('#game').slideUp(() => {
     $('.menu-item').slideDown();
     $('#author').slideDown();

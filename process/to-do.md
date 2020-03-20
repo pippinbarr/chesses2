@@ -38,8 +38,8 @@
 - ~~__SOUNDS SHIT__ Basic tone matrix prototype~~
 - ~~__TRIED THIS AND IT'S BETTER__ Square by square for a melody, with per-piece tones? Per color synths?~~
 - ~~__I THINK THE PER SQUARE MELODY IS THE RIGHT CHOICE__ How to make this sound interesting enough?~~
+- ~~Fix the sound going on when you return to the menu~~
 
-- Fix the sound going on when you return to the menu
 - Improve the sound though
 
 ## LEWITT
