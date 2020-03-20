@@ -15,7 +15,20 @@ class Fog extends BaseChess {
 
     $(SQUARE).append('<div class="fog"></div>');
 
-    this.setupFog();
+    let turn = this.game.turn();
+    let color = turn === 'w' ? 'WHITE' : 'BLACK';
+    let offColor = turn === 'w' ? 'BLACK' : 'WHITE';
+    setTimeout(() => {
+      $('#fog-message').text(`${color}'S TURN. ${offColor} LOOK AWAY. ${color} PLAYER CLICK HERE WHEN READY.`).slideDown();
+      $('#fog-message').one('click', () => {
+        $('#fog-message').slideUp();
+        this.setupFog();
+        this.hideMessage();
+      })
+    }, 500);
+
+
+    // this.setupFog();
   }
 
   // Override move since that's the key moment samsara happens
