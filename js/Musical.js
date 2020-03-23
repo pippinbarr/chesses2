@@ -18,79 +18,60 @@ class Musical extends BaseChess {
     // this.game.load("5Rnk/7n/7R/8/8/8/7R/6QK w - - 0 7");
     // this.board.position(this.game.fen(),false);
 
-    this.MUSIC_INTERVAL = 100;
-    this.synths = [];
-    this.volumes = {
-      p: 1 / 10,
-      n: 3 / 10,
-      b: 3 / 10,
-      r: 5 / 10,
-      q: 9 / 10,
-      k: 10 / 10
-    };
-
-    this.frequencies = [
-      220, 277.18, 329.63, 440, 554.37, 659.25, 880, 1108.73
+    this.MUSIC_INTERVAL = 1000;
+    this.whiteSynths = [];
+    this.blackSynths = [];
+    let whiteFrequencies = [
+      // Amaj ACE chord
+      220, 261.63, 329.63, 440, 523.25, 659.25, 880, 1046.50
+    ];
+    let blackFrequencies = [
+      //Amag FAC chord
+      174.61, 220, 261.63, 349.23, 440, 523.25, 698.46, 880, 1046.50
     ];
 
-    this.whiteSynth = new Pizzicato.Sound({
-      source: 'wave',
-      options: {
-        type: 'sine',
-        frequency: 0,
-        attack: 0.1,
-        release: 0.1
-      }
-    });
+    for (let i = 0; i < 8; i++) {
+      this.whiteSynths.push(new Pizzicato.Sound({
+        source: 'wave',
+        options: {
+          frequency: whiteFrequencies[i],
+          attack: 0.4,
+          release: 0.4
+        }
+      }));
 
-    this.blackSynth = new Pizzicato.Sound({
-      source: 'wave',
-      options: {
-        type: 'sine',
-        frequency: 0,
-        attack: 0.1,
-        release: 0.1
-      }
-    });
-
-    this.rank = 7;
+      this.blackSynths.push(new Pizzicato.Sound({
+        source: 'wave',
+        options: {
+          frequency: blackFrequencies[i],
+          attack: 0.4,
+          release: 0.4
+        }
+      }));
+    }
     this.file = 0;
 
-    this.playInterval = setInterval(() => {
+    setInterval(() => {
       this.play();
     }, this.MUSIC_INTERVAL);
   }
 
   play() {
-    $(SQUARE).removeClass('note');
-
-    this.whiteSynth.stop();
-    this.blackSynth.stop();
-
-    let square = `${FILES[this.file]}${RANKS[this.rank]}`;
-    let piece = this.game.get(square);
-    if (piece) {
-      if (piece.color === 'w') {
-        this.whiteSynth.frequency = this.frequencies[this.file];
-        this.whiteSynth.volume = this.volumes[piece.type];
-        this.whiteSynth.play();
+    let $squares = $(`div[class*="square-${FILES[this.file]}"]`);
+    let context = this;
+    $squares.each(function() {
+      let square = $(this).data('square');
+      let piece = context.game.get(square);
+      if (piece && context.game.turn() === piece.color) {
+        let rank = RANKS.indexOf(square[1]);
+        let synth = piece.color === 'w' ? context.whiteSynths[rank] : context.blackSynths[7 - rank];
+        console.log(synth.frequency);
+        synth.play();
+        setTimeout(() => {
+          synth.stop();
+        }, context.MUSIC_INTERVAL / 2 - synth.release * 1000);
       }
-      else {
-        this.blackSynth.frequency = this.frequencies[this.file];
-        this.blackSynth.volume = this.volumes[piece.type];
-        this.blackSynth.play();
-      }
-    }
-
-    $(`.square-${square}`).addClass('note');
-
+    });
     this.file = (this.file + 1) % FILES.length;
-    if (this.file === 0) {
-      this.rank--;
-      if (this.rank < 0) {
-        this.rank = 7;
-        this.file = 0;
-      }
-    }
   }
 }
