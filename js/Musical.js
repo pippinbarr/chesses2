@@ -51,6 +51,13 @@ class Musical extends BaseChess {
     }
     this.file = 0;
 
+    $(SQUARE).append('<div class="note-playing"></div>');
+    for (let i = 0; i < 8; i++) {
+      $(`.square-${FILES[i]}1`).addClass('white-file-not-playing');
+      $(`.square-${FILES[i]}8`).addClass('black-file-not-playing');
+    }
+    $(`.square-a1`).addClass('white-file-playing');
+
     setInterval(() => {
       this.play();
     }, this.MUSIC_INTERVAL);
@@ -59,16 +66,28 @@ class Musical extends BaseChess {
   play() {
     let $squares = $(`div[class*="square-${FILES[this.file]}"]`);
     let context = this;
+    let file = FILES[this.file];
+    $(SQUARE).removeClass('white-file-playing');
+    $(SQUARE).removeClass('black-file-playing');
+    if (this.game.turn() === 'w') {
+      $(`.square-${file}1`).addClass('white-file-playing');
+    }
+    else {
+      $(`.square-${file}8`).addClass('black-file-playing');
+    }
     $squares.each(function() {
       let square = $(this).data('square');
       let piece = context.game.get(square);
       if (piece && context.game.turn() === piece.color) {
+        $(`.square-${square} .note-playing`).show();
         let rank = RANKS.indexOf(square[1]);
         let synth = piece.color === 'w' ? context.whiteSynths[rank] : context.blackSynths[7 - rank];
-        console.log(synth.frequency);
         synth.play();
         setTimeout(() => {
           synth.stop();
+          setTimeout(() => {
+            $('.note-playing').hide();
+          }, context.MUSIC_INTERVAL / 2 - synth.release * 1000);
         }, context.MUSIC_INTERVAL / 2 - synth.release * 1000);
       }
     });
