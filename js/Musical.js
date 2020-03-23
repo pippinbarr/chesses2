@@ -63,6 +63,26 @@ class Musical extends BaseChess {
     }, this.MUSIC_INTERVAL);
   }
 
+  changeTurn() {
+    if (this.gameOver) return;
+    if (this.game.turn() === 'w') {
+      setTimeout(() => {
+        // $('.board-b72b1').removeClass('blackTurn', 250);
+        // $('.board-b72b1').addClass('whiteTurn', 250, () => {
+        this.enableInput();
+        this.from = null;
+      }, 500);
+    }
+    else {
+      // $('.board-b72b1').removeClass('whiteTurn', 250);
+      // $('.board-b72b1').addClass('blackTurn', 250, () => {
+      setTimeout(() => {
+        this.enableInput();
+        this.from = null;
+      }, 500);
+    }
+  }
+
   play() {
     let $squares = $(`div[class*="square-${FILES[this.file]}"]`);
     let context = this;

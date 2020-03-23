@@ -15,7 +15,6 @@
 - ~~What happens if you move a king? (Nothing.)~~
 - ~~__IF YOU PUT YOURSELF IN CHECK FROM THE REVERSED PIECE YOU LOSE MY FRIEND__ Think about check and checkmate (can you move a piece such that its final position would put you in check? Would have to be able to undo moves... ugh no) - will have to allow for checkmate that occurs when you check yourself and the turn changes over~~
 
-
 ## FOG
 
 - ~~Make a shitty prototype~~
@@ -26,7 +25,6 @@
 - ~~Reveal full board on checkmate (fade all fog away)~~
 
 - Consider fancy turn-taking fog stuff like fading the fog to the current situation (painful for some reason, create extreme lag... probably trigger too many animations at the same time)
-
 
 ## XR (Cross-Reality)
 
@@ -40,8 +38,7 @@
 - ~~Fix the sound going on when you return to the menu~~
 - ~~Improve the sound though~~
 - ~~Visual indication of pieces currently playing~~
-
-- Welllll?
+- ~~Welllll?~~
 
 ## LEWITT
 
