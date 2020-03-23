@@ -2,8 +2,10 @@
 
 - ~~Add an information window to explain any given game~~
 - ~~Make the actual info panel look better~~
+- ~~Really would prefer the menu not to be offset left by the info button~~
 
-- Really would prefer the menu not to be offset left by the info button
+- Wording of the info panels needs help?
+- Font size of FOG instructions on mobile?
 
 # ~~AI?~~
 

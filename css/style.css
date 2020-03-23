@@ -63,12 +63,13 @@ This is the style file for this project.
 }
 
 .info {
+  position: absolute;
   font-size: .75em;
-  float: right;
+  /* float: right; */
   opacity: 0;
   text-align: center;
   letter-spacing: normal;
-  margin-right: 1em;
+  /* margin-right: 1em; */
 }
 
 .info:hover {

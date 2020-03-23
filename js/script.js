@@ -61,12 +61,15 @@ function chessesSetup() {
     let $menuItem = $('<div>')
       .addClass('menu-item active')
       .attr('id', menu[i].title)
-      .html(`${menu[i].title}<span class="info">ⓘ</span>`)
+      .html(`${menu[i].title}`)
       .data('game', menu[i].title)
       .data('info', menu[i].info)
       .on('click', menuClicked)
       .appendTo('#menu');
+    let $infoSymbol = $('<span class="info">ⓘ</span>');
+    $menuItem.append($infoSymbol);
   }
+
 
   let $infoPanel = $('<div>')
     .addClass('info-panel')
