@@ -16,6 +16,14 @@ class Draughts extends BaseChess {
     // this.game.load("k7/8/p7/1P6/8/3P4/8/K7 w - - 0 7");
     // this.board.position(this.game.fen(), false);
 
+    // King capture piece position
+    // this.game.load("3k4/8/8/8/8/8/4p3/4K3 w - - 0 7");
+    // this.board.position(this.game.fen(), false);
+
+    // King captured position
+    // this.game.load("8/8/8/8/8/8/4k3/4K3 w - - 0 7");
+    // this.board.position(this.game.fen(), false);
+
   }
 
   squareClicked(event) {
@@ -31,6 +39,7 @@ class Draughts extends BaseChess {
       this.from = square;
       this.currentMove.from = square;
       let moves = this.getMoves(square);
+
       if (moves.length === 0) {
         $(`.square-${square} ${PIECE}`).effect('shake', {
           times: 1,
@@ -82,6 +91,30 @@ class Draughts extends BaseChess {
     }
   }
 
+  moveCompleted() {
+    this.from = null;
+    let moves = this.getMoves();
+    console.log(`moveCompleted... ${this.game.turn()} turn, ${moves.length} moves available...`)
+    let fen = this.game.fen();
+    if (moves.length === 0 || fen.indexOf('k') < 0 || fen.indexOf('K') < 0) {
+      // if () {
+      // CHECKMATE
+      // this.flipTurn();
+      this.showResult(true, this.getTurn(false));
+      // }
+      // else {
+      //   // STALEMATE
+      //   this.showResult(false);
+      // }
+    }
+    else {
+      if (this.gameOver) return;
+      this.changeTurn();
+      this.hideMessage();
+    }
+  }
+
+
   highlightMoves(moves) {
     this.clearHighlights();
 
@@ -117,9 +150,12 @@ class Draughts extends BaseChess {
     // This won't work for en passant. There are a lot of problems here man.
     if (this.currentMove.captureSquare) {
       console.log("HANDLING CAPTURE MOVE")
-      this.game.remove(this.currentMove.captureSquare);
-      this.game.put(this.game.get(from), this.currentMove.to);
+      let fromPiece = this.game.get(from);
+      let capturedPiece = this.game.get(this.currentMove.captureSquare);
       this.game.remove(this.currentMove.from);
+
+      let putResult = this.game.put(fromPiece, this.currentMove.to);
+      this.game.remove(this.currentMove.captureSquare);
 
       this.disableInput();
 
@@ -146,8 +182,8 @@ class Draughts extends BaseChess {
           this.currentMove.from = undefined;
           this.currentMove.to = undefined;
           this.currentMove.captureSquare = undefined;
-          this.moveCompleted();
           this.flipTurn();
+          this.moveCompleted();
         }
 
       }, this.config.moveSpeed * 1.1);
@@ -163,7 +199,18 @@ class Draughts extends BaseChess {
   }
 
   getMoves(square) {
-    let moves = super.getMoves(square);
+    ////////////////////////////////////////////////////////////
+    // Let's look at all illegal moves too out of interest
+    let options = {
+      verbose: true,
+      legal: false
+    }
+    if (square) options.square = square;
+    let moves = this.game.moves(options);
+    console.log(moves);
+    ////////////////////////////////////////////////////////////
+
+    // let moves = super.getMoves(square);
 
     // If there's no square specified, this is just wanting all possible moves
     if (square === undefined) return moves;
@@ -175,6 +222,7 @@ class Draughts extends BaseChess {
     if (this.game.get(moves[0].from).type !== 'n') {
       // Select all captures that are adjacent and have a space to jump to
       captures = this.getCaptures(moves, square);
+      console.log(captures);
     }
 
     // If there are any captures, they're the only possible move

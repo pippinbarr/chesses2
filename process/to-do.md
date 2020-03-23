@@ -3,6 +3,8 @@
 - ~~Add an information window to explain any given game~~
 - ~~Make the actual info panel look better~~
 
+- Really would prefer the menu not to be offset left by the info button
+
 # ~~AI?~~
 
 - Do I dare implement some kind of primitive AI? Do I have the right kind of possibilities for lookahead? I suspect it's just not worth it as per usual, too hard, not enough part of the idea. Let people play themselves.
@@ -59,7 +61,7 @@
 
 - ~~__YUP, THAT WORKS I GUESS.__ Make a prototype~~
 
-## CHESSQUERS/DRAUGHTS
+## CHECK-RS
 
 - ~~__IT'S KIND OF HARD BUT WORTH DOING__ Start prototype and see if it's super hard or not~~
 - ~~Improve prototype to display actual destination square, not capture square~~
@@ -68,10 +70,16 @@
 - ~~Remove captures for knights~~
 - ~~En passant???~~
 - ~~__ALSO JUST TOO CONFUSING TO ONLY BE ALLOWED TO SELECT PIECES WHICH CAN CAPTURE AND REDUCES THE MOVE SET TOO MUCH__ Should you force capturing moves against all other movement forms? Or only enforce on a piece once it's selected for movement? (Suspect the other version could end up being too much like suicide?)~~
+- ~~__CHECK-RS FOR NOW__ The name, man... it's been done so many times in so many ways with so many names. Taken seem to be: Chesskers, chessers, ... I thought about CHECK-ERS, but it's nine letters which is non-ideal. Also ironic if my game ends up not including check?!~~
+- ~~Check and checkmate (need to calculate legality of moves relative to check myself... but oh dear got this could include arbitrarily deep multijump moves... it may be that we just have to say that you win when you capture the king instead, and disable check and checkmate altogether). A good thing about this would be the ability to force a win by make the king jump into danger, which might actually be a way you can avoid stalemates!!~~
+- ~~Allow all illegal moves so that it's possible to play into and through check as needed~~
+- ~~Allow king to capture pieces (wasn't working)~~
+- ~~Other weird shit??? There are probably stalemate cases that this version introduces, but I suspect it's not worth pursuing seriously (as with Gravity chess)~~
+- ~~Recognize end of game on king captured!~~
+- ~~__HAVEN'T SEEN IT IN A WHILE...__ BUG: Think a saw a bug where a move made a sound but didn't execute?~~
 
-- Check and checkmate?!?!?!?!
-- Other weird shit???
-- Think a saw a bug where a move made a sound but didn't execute?
+- Is it possible that all positions other than KvK is winnable because you can force a jump into danger?
+- Castling through check (note that just asking for non-legal moves won't give you a castling move unfortunately)
 
 ## ~~LIFE~~
 

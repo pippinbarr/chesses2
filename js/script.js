@@ -36,7 +36,7 @@ function chessesSetup() {
     },
     {
       title: "XR",
-      info: "Cross-reality is the hottest reality! Get hyped about this cross-reality chess application! Use real chess pieces on a virtual board! Tip over your laptop, monitor, phone, or tablet and play this exciting hybrid game now!"
+      info: "Use this virtual board to play cross-reality chess! Place your device screen up and place appropriately sized chess pieces in the standard opening position!"
     },
     {
       title: "LEWITT",
@@ -51,7 +51,7 @@ function chessesSetup() {
       // info: "Chess has finally entered the third dimension!"
     },
     {
-      title: "DRAUGHTS",
+      title: "CHECK-RS",
       info: "Pieces can only capture adjacent pieces by jumping over them to a clear space, as in draughts or checkers. Because they do not move linearly, knights cannot capture anything at all. Win by forcing the opposing king into a situation where it cannot avoid being jumped."
     },
   ];
@@ -152,7 +152,7 @@ function menuClicked() {
       chess = new OneDee();
       break;
 
-    case 'DRAUGHTS':
+    case 'CHECK-RS':
       chess = new Draughts();
       break;
   }
