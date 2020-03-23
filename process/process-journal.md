@@ -202,3 +202,21 @@ Now in a place where I have eight working games, as well as an informational UI 
 The key remaining issue across multiple games is making sure that the checkmate/game over stuff works properly, which means intervening at the right moment and sometimes perhaps being able to simulate moves (which is always very, very scary to think about).
 
 Basically it's a set of games I like, though, so I'm mostly positive. Just a set of kind of polishing activities remain. I can do this.
+
+---
+
+# Musicals, Checking Checkers (Monday, 23 March 2020, 13:32PM)
+
+Seems like a time to write another entry here as the project edges toward completion?
+
+## Musicals
+
+Spent an amount of time on the musical one after I'd got the first prototype working because I wanted something that "sounds nice". I think there's an interesting tension there between the idea of chess as a music representation (whether it's a tone matrix or a score for a melody etc.) and the question of whether any given (or the average) chess position is actually musically interesting. I spent a lot of time trying slightly different configurations of sound and relationship of pieces/position to music, basically searching for something that sounded good - but it might be the case the chess just isn't a very interesting sounding game. I mean, why should it be?
+
+The final version goes more for mood with a kind of Philip Glassy minimalism most of all because it's a safe way to process discrete information (a position) into something that sounds at the very least inoffensive. That paired with Rilla's idea that white and black could be organized into different (related) chords gives you at least some sense of drama and turn taking in the music, which is therefore chess-like. The fact more advanced pieces are higher pitched also helps musically give a sense of what the position is like if you let it play through. So while the music itself is not really something I think I'd listen to voluntarily, it at least feels informationally worthwhile and still sounds at least "okay" as music thanks to the generic usefulness of chords and scales and keys and so forth that organizes musical information.
+
+## Checking checkers
+
+The big remaining task in the overall project is polishing off the checkers version which has the most intensely irritating consequences for all the rules of chess. I just realized before lunch that castling through check would now be plausible, so that's a big and difficult thing to realize - I don't know if you can force a castling move? If not I suppose you can just set the board that way, but lots of special case stuff going on there. And then there's check and checkmate that require a bunch of stuff too, not to mention not disallowing particular moves that seem to be in check (which will require looking at all moves not just legal moves, and recalculating legality for myself - but I think that's something I did for Gravity, so should have the bones of it somewhere).
+
+The checkers version is actually pretty satisfying, so I do want to get it all right so that someone can play in the right spirit.
