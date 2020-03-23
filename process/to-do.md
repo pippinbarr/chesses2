@@ -77,9 +77,12 @@
 - ~~Other weird shit??? There are probably stalemate cases that this version introduces, but I suspect it's not worth pursuing seriously (as with Gravity chess)~~
 - ~~Recognize end of game on king captured!~~
 - ~~__HAVEN'T SEEN IT IN A WHILE...__ BUG: Think a saw a bug where a move made a sound but didn't execute?~~
+- ~~__NO THERE WOULD STILL BE VARIOUS STALEMATES LIKE K and P versus K I IMAGINE__ Is it possible that all positions other than KvK is winnable because you can force a jump into danger?~~
+- ~~Castling through check (note that just asking for non-legal moves won't give you a castling move unfortunately)~~
+    - ~~Maintain castling flag in game myself (e.g. any king or rook move disables forms of castling, including jumps)~~
+    - ~~When moving king from e1/e8 check castling squares + flags and add castling move to the set of moves (may need special data like the jump captures to be able to carry it out correctly)~~
 
-- Is it possible that all positions other than KvK is winnable because you can force a jump into danger?
-- Castling through check (note that just asking for non-legal moves won't give you a castling move unfortunately)
+- Check for win on first jump of sequences, not on move completed!
 
 ## ~~LIFE~~
 

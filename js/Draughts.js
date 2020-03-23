@@ -9,7 +9,23 @@ class Draughts extends BaseChess {
     this.currentMove = {
       from: undefined,
       to: undefined,
-      captureSquare: undefined
+      captureSquare: undefined,
+      castlingFlag: undefined, // To handle castling moves
+    }
+
+    // To track castling availability in the game manually
+    // (Since we want to be able to castle "illegally" for one
+    // thing, and also because we use game.put() to make our jumping
+    // moves and that doesn't alter the castling flags in the engine.)
+    this.castling = {
+      w: {
+        q: true,
+        k: true,
+      },
+      b: {
+        q: true,
+        k: true
+      }
     }
 
     // Multijump position
@@ -23,6 +39,10 @@ class Draughts extends BaseChess {
     // King captured position
     // this.game.load("8/8/8/8/8/8/4k3/4K3 w - - 0 7");
     // this.board.position(this.game.fen(), false);
+
+    // Castle through check
+    this.game.load("rb2k2r/8/8/8/8/8/6r1/R3K2R w KQkq - 0 7");
+    this.board.position(this.game.fen(), false);
 
   }
 
@@ -79,9 +99,13 @@ class Draughts extends BaseChess {
         let to = $(event.currentTarget).attr('data-square');
         this.currentMove.to = to;
         let captureSquare = $(event.currentTarget).data('captureSquare');
+        let castlingFlag = $(event.currentTarget).data('castlingFlag');
         if (captureSquare) {
           this.currentMove.captureSquare = captureSquare;
           to = captureSquare;
+        }
+        if (castlingFlag) {
+          this.currentMove.castlingFlag = castlingFlag;
         }
         this.move(this.from, this.currentMove.to);
       }
@@ -92,20 +116,11 @@ class Draughts extends BaseChess {
   }
 
   moveCompleted() {
+    console.log(this.game.fen());
     this.from = null;
-    let moves = this.getMoves();
-    console.log(`moveCompleted... ${this.game.turn()} turn, ${moves.length} moves available...`)
-    let fen = this.game.fen();
-    if (moves.length === 0 || fen.indexOf('k') < 0 || fen.indexOf('K') < 0) {
-      // if () {
-      // CHECKMATE
-      // this.flipTurn();
+    let fenArray = this.game.fen().split(' ');
+    if (fenArray[0].indexOf('k') < 0 || fenArray[0].indexOf('K') < 0) {
       this.showResult(true, this.getTurn(false));
-      // }
-      // else {
-      //   // STALEMATE
-      //   this.showResult(false);
-      // }
     }
     else {
       if (this.gameOver) return;
@@ -134,10 +149,14 @@ class Draughts extends BaseChess {
           let captureRank = RANKS.indexOf(parseInt(move.to[1]) - dy);
           let captureFile = FILES.indexOf(move.to[0]);
           let captureSquare = `${FILES[captureFile]}${RANKS[captureRank]}`;
-          console.log(captureSquare);
           $(`.square-${highlightSquare}`).data('captureSquare', captureSquare);
         }
-
+      }
+      if (move.flags.indexOf('k') >= 0) {
+        $(`.square-${highlightSquare}`).data('castlingFlag', 'k');
+      }
+      if (move.flags.indexOf('q') >= 0) {
+        $(`.square-${highlightSquare}`).data('castlingFlag', 'q');
       }
       this.highlight(highlightSquare);
     });
@@ -146,9 +165,69 @@ class Draughts extends BaseChess {
   }
 
   move(from, to) {
+    if (this.currentMove.castlingFlag) {
+      console.log("HANDLING CASTLING MOVE");
+      let fromPiece = this.game.get(from);
+      this.game.remove(from);
+      this.game.put(fromPiece, to);
+      if (this.game.turn() === 'w') {
+        if (this.currentMove.castlingFlag === 'k') {
+          this.game.remove('h1');
+          this.game.put({
+            type: 'r',
+            color: 'w'
+          }, 'f1');
+        }
+        else if (this.currentMove.castlingFlag === 'q') {
+          this.game.remove('a1');
+          this.game.put({
+            type: 'r',
+            color: 'w'
+          }, 'd1');
+        }
+        this.castling.w = undefined;
+      }
+      else {
+        if (this.currentMove.castlingFlag === 'k') {
+          this.game.remove('h8');
+          this.game.put({
+            type: 'r',
+            color: 'b'
+          }, 'f8');
+        }
+        else if (this.currentMove.castlingFlag === 'q') {
+          this.game.remove('a8');
+          this.game.put({
+            type: 'r',
+            color: 'b'
+          }, 'd8');
+        }
+        this.castling.b = undefined;
+      }
+
+      this.disableInput();
+
+      // Clear all highlights from the board
+      this.clearHighlights();
+
+      // Update the board based on the new position
+      this.board.position(this.game.fen(), true);
+      setTimeout(() => {
+        // Now we need to check only for captures and offer them
+        this.currentMove.from = undefined;
+        this.currentMove.to = undefined;
+        this.currentMove.captureSquare = undefined;
+        this.currentMove.castlingFlag = undefined;
+        this.flipTurn();
+        this.moveCompleted();
+
+      }, this.config.moveSpeed * 1.1);
+
+    }
     // If it's a capture, handle our special case
     // This won't work for en passant. There are a lot of problems here man.
-    if (this.currentMove.captureSquare) {
+    else if (this.currentMove.captureSquare) {
+      this.handleDisableCastling(from, to);
       console.log("HANDLING CAPTURE MOVE")
       let fromPiece = this.game.get(from);
       let capturedPiece = this.game.get(this.currentMove.captureSquare);
@@ -190,6 +269,7 @@ class Draughts extends BaseChess {
 
     }
     else {
+      this.handleDisableCastling(from, to);
       // Otherwise do the usual
       super.move(from, to);
       this.currentMove.from = undefined;
@@ -198,19 +278,44 @@ class Draughts extends BaseChess {
     }
   }
 
+  handleDisableCastling(from, to) {
+    let piece = this.game.get(from);
+
+    if (this.castling.w) {
+      if (from === 'e1' && piece.type === this.game.KING && piece.color === 'w') {
+        this.castling.w = undefined;
+      }
+      if (from === 'h1' && piece.type === this.game.ROOK && piece.color === 'w') {
+        this.castling.w.k = false;
+      }
+      if (from === 'a1' && piece.type === this.game.ROOK && piece.color === 'w') {
+        this.castling.w.q = false;
+      }
+    }
+    if (this.castling.b) {
+      if (from === 'e8' && piece.type === this.game.KING && piece.color === 'b') {
+        this.castling.b = undefined;
+      }
+      if (from === 'h8' && piece.type === this.game.ROOK && piece.color === 'b') {
+        this.castling.b.k = false;
+      }
+      if (from === 'a8' && piece.type === this.game.ROOK && piece.color === 'b') {
+        this.castling.b.q = false;
+      }
+
+    }
+    // Disable castling if they move their king
+  }
+
+
   getMoves(square) {
-    ////////////////////////////////////////////////////////////
-    // Let's look at all illegal moves too out of interest
+    // We want illegal moves too so we can move into check
     let options = {
       verbose: true,
       legal: false
     }
     if (square) options.square = square;
     let moves = this.game.moves(options);
-    console.log(moves);
-    ////////////////////////////////////////////////////////////
-
-    // let moves = super.getMoves(square);
 
     // If there's no square specified, this is just wanting all possible moves
     if (square === undefined) return moves;
@@ -231,12 +336,15 @@ class Draughts extends BaseChess {
     // Select all non-captures
     let nonCaptures = this.getNonCaptures(moves, square);
 
+    // Select all castling moves
+    let castling = this.getCastling(square);
+
     // Return the resulting total set
-    return [...nonCaptures, ...captures];
+    return [...nonCaptures, ...captures, ...castling];
   }
 
   getNonCaptures(moves, square) {
-    return moves.filter(a => !this.isCapture(a));
+    return moves.filter(a => !this.isCapture(a) && !this.isCastling(a));
   }
 
   getCaptures(moves, square) {
@@ -245,6 +353,59 @@ class Draughts extends BaseChess {
         this.adjacent(square, a.to) &&
         this.getNextSpace(square, a.to);
     });
+  }
+
+  getCastling(square) {
+    let turn = this.game.turn();
+    let piece = this.game.get(square);
+    let moves = [];
+    switch (square) {
+      case 'e1':
+        if (this.castling.w && piece.type === this.game.KING && piece.color === 'w') {
+          // If we're here then it's the right square and the right piece and castling
+          // is technically possible for this side, so we need to check the two castling
+          // sides and the intervening pieces...
+          if (this.castling.w.k && !this.game.get('f1') && !this.game.get('g1')) {
+            // Can castle kingside
+            moves.push({
+              from: 'e1',
+              to: 'g1',
+              flags: 'k'
+            });
+          }
+          if (this.castling.w.q && !this.game.get('d1') && !this.game.get('c1') && !this.game.get('b1')) {
+            // Can castle queenside
+            moves.push({
+              from: 'e1',
+              to: 'c1',
+              flags: 'q'
+            });
+          }
+        }
+      case 'e8':
+        if (this.castling.b && piece.type === this.game.KING && piece.color === 'b') {
+          // If we're here then it's the right square and the right piece and castling
+          // is technically possible for this side, so we need to check the two castling
+          // sides and the intervening pieces...
+          if (this.castling.b.k && !this.game.get('f8') && !this.game.get('g8')) {
+            // Can castle kingside
+            moves.push({
+              from: 'e8',
+              to: 'g8',
+              flags: 'k'
+            });
+          }
+          if (this.castling.b.q && !this.game.get('d8') && !this.game.get('c8') && !this.game.get('b8')) {
+            // Can castle queenside
+            moves.push({
+              from: 'e8',
+              to: 'c8',
+              flags: 'q'
+            });
+          }
+        }
+    }
+    return moves;
   }
 
   adjacent(from, to) {
@@ -288,6 +449,10 @@ class Draughts extends BaseChess {
 
   isCapture(move) {
     return (move.flags.indexOf("c") >= 0 || move.flags.indexOf("e") >= 0);
+  }
+
+  isCastling(move) {
+    return (move.flags.indexOf('k') >= 0 || move.flags.indexOf('q') >= 0);
   }
 
 }
