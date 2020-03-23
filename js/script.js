@@ -7,6 +7,7 @@ Pippin Barr
 
 ******************/
 
+let MOBILE = false;
 
 let chess;
 let $p5Canvas;
@@ -65,6 +66,7 @@ function chessesSetup() {
       .data('game', menu[i].title)
       .data('info', menu[i].info)
       .on('click', menuClicked)
+      .on('touchstart', menuClicked)
       .appendTo('#menu');
     let $infoSymbol = $('<span class="info">ⓘ</span>');
     $menuItem.append($infoSymbol);
@@ -116,7 +118,10 @@ function titleClicked() {
   });
 }
 
-function menuClicked() {
+function menuClicked(e) {
+
+  if (e.type === 'touchstart') MOBILE = true;
+  else MOBILE = false;
 
   switch ($(this).data('game')) {
     case 'REVERSAL':

@@ -19,7 +19,7 @@ class Fog extends BaseChess {
     let color = turn === 'w' ? 'WHITE' : 'BLACK';
     let offColor = turn === 'w' ? 'BLACK' : 'WHITE';
     setTimeout(() => {
-      $('#fog-message').text(`${color}'S TURN. ${offColor} LOOK AWAY. ${color} PLAYER CLICK HERE WHEN READY.`).slideDown();
+      $('#fog-message').text(`${color}'S TURN. ${offColor} LOOK AWAY. ${color} PLAYER ${MOBILE ? 'TAP' : 'CLICK'} HERE WHEN READY.`).slideDown();
       $('#fog-message').one('click', () => {
         $('#fog-message').slideUp();
         this.setupFog(false);

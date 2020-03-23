@@ -3,9 +3,11 @@
 - ~~Add an information window to explain any given game~~
 - ~~Make the actual info panel look better~~
 - ~~Really would prefer the menu not to be offset left by the info button~~
+- ~~Need to say "TAP" instead of click for mobile in Fog instructions~~
+- ~~Font size of FOG instructions on mobile?~~
+- ~~CSS for FOG on mobile is hideous (borders all broken up...)~~
 
 - Wording of the info panels needs help?
-- Font size of FOG instructions on mobile?
 
 # ~~AI?~~
 

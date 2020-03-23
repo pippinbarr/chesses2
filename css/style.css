@@ -19,6 +19,8 @@ This is the style file for this project.
   background-color: rgba(210,210,210);
   opacity: 1;
   z-index: 2000;
+  margin: -1px;
+  padding: 1px;
 }
 
 #fog-message {
