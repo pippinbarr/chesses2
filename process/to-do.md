@@ -24,6 +24,7 @@
 - ~~Need first turn instructions~~
 - ~~Reveal full board on checkmate (fade all fog away)~~
 
+- BUG with turn instructions not going away on quit
 - Consider fancy turn-taking fog stuff like fading the fog to the current situation (painful for some reason, create extreme lag... probably trigger too many animations at the same time)
 
 ## XR (Cross-Reality)
@@ -47,8 +48,7 @@
 - ~~__NO NEED__ Consider writing your own line-drawing code with noise()~~
 - ~~Fix pixel density of saved image?~~
 - ~~__TOO HARD AND TOO WEIRD ON MOBILE, PLUS I FEEL I CAN ARGUE THAT THE DRAWING IT MADE IN SITU AND YOU SHOULDN'T TREAT IT AS SOMETHING TO SAVE SEPARATE FROM THAT__ Provide the option to save rather than doing it instantly (since on my phone at least it leads to just a weird screen with the image and it's unclear how to save it)~~
-
-- Consider the timing of the drawing version appearing relative to game over
+- ~~Consider the timing of the drawing version appearing relative to game over~~
 
 ## SAMSARA
 

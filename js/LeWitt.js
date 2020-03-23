@@ -45,7 +45,9 @@ class LeWitt extends BaseChess {
   showResult(win, color) {
     super.showResult(win, color);
     if (this.game.game_over()) {
-      this.showDrawing();
+      setTimeout(() => {
+        this.showDrawing();
+      }, 1000);
     }
   }
 
@@ -59,9 +61,11 @@ class LeWitt extends BaseChess {
         zIndex: 50,
         position: "absolute",
         top: 0,
-        left: 0
+        left: 0,
+        display: "none"
       })
       .appendTo("#board");
+    $bg.fadeIn(2000);
   }
 
 }
