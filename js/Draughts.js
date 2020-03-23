@@ -118,17 +118,11 @@ class Draughts extends BaseChess {
   moveCompleted() {
     console.log(this.game.fen());
     this.from = null;
-    let fenArray = this.game.fen().split(' ');
-    if (fenArray[0].indexOf('k') < 0 || fenArray[0].indexOf('K') < 0) {
-      this.showResult(true, this.getTurn(false));
-    }
-    else {
-      if (this.gameOver) return;
-      this.changeTurn();
-      this.hideMessage();
-    }
-  }
 
+    if (this.gameOver) return;
+    this.changeTurn();
+    this.hideMessage();
+  }
 
   highlightMoves(moves) {
     this.clearHighlights();
@@ -246,6 +240,13 @@ class Draughts extends BaseChess {
 
       setTimeout(() => {
         captureSFX.play();
+
+        let fenArray = this.game.fen().split(' ');
+        if (fenArray[0].indexOf('k') < 0 || fenArray[0].indexOf('K') < 0) {
+          this.showResult(true, this.getTurn(false));
+          return;
+        }
+
         // Now we need to check only for captures and offer them
         let captures = this.getCaptures(super.getMoves(this.currentMove.to), this.currentMove.to);
         if (captures.length > 0) {

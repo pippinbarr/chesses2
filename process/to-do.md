@@ -81,8 +81,7 @@
 - ~~Castling through check (note that just asking for non-legal moves won't give you a castling move unfortunately)~~
     - ~~Maintain castling flag in game myself (e.g. any king or rook move disables forms of castling, including jumps)~~
     - ~~When moving king from e1/e8 check castling squares + flags and add castling move to the set of moves (may need special data like the jump captures to be able to carry it out correctly)~~
-
-- Check for win on first jump of sequences, not on move completed!
+- ~~Check for win on first jump of sequences, not on move completed!~~
 
 ## ~~LIFE~~
 
