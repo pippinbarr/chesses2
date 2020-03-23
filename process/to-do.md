@@ -23,8 +23,8 @@
 - ~~__DONE__ Consider showing fog result of move before switching turns~~
 - ~~Need first turn instructions~~
 - ~~Reveal full board on checkmate (fade all fog away)~~
+- ~~BUG with turn instructions not going away on quit~~
 
-- BUG with turn instructions not going away on quit
 - Consider fancy turn-taking fog stuff like fading the fog to the current situation (painful for some reason, create extreme lag... probably trigger too many animations at the same time)
 
 ## XR (Cross-Reality)

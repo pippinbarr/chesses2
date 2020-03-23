@@ -92,8 +92,10 @@ function chessesSetup() {
 function titleClicked() {
   $('.instruction').slideUp();
   $('#message').slideUp();
-  $('#title').removeClass('active');
   $('.info-panel').slideUp();
+  $('#fog-message').slideUp();
+
+  $('#title').removeClass('active');
   $('.info').stop().css('opacity', 0);
 
   if (chess instanceof Musical) {
