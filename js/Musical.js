@@ -113,4 +113,9 @@ class Musical extends BaseChess {
     });
     this.file = (this.file + 1) % FILES.length;
   }
+
+  // When quitting this game we need to stop the music from playing
+  quit() {
+    clearInterval(this.playInterval);
+  }
 }

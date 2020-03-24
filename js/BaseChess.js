@@ -271,4 +271,9 @@ class BaseChess {
       return this.game.turn() === 'w' ? 'b' : 'w';
     }
   }
+
+  // Called by main script on quitting a game
+  quit() {
+
+  }
 }

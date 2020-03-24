@@ -1,5 +1,7 @@
 "use strict";
 
+// A reference to the p5 canvas for LeWitt so we can show.hide it
+let $p5Canvas;
 
 class LeWitt extends BaseChess {
 
