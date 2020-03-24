@@ -41,8 +41,8 @@ class Draughts extends BaseChess {
     // this.board.position(this.game.fen(), false);
 
     // Castle through check
-    this.game.load("rb2k2r/8/8/8/8/8/6r1/R3K2R w KQkq - 0 7");
-    this.board.position(this.game.fen(), false);
+    // this.game.load("rb2k2r/8/8/8/8/8/6r1/R3K2R w KQkq - 0 7");
+    // this.board.position(this.game.fen(), false);
 
   }
 

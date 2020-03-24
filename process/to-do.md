@@ -6,12 +6,15 @@
 - ~~Need to say "TAP" instead of click for mobile in Fog instructions~~
 - ~~Font size of FOG instructions on mobile?~~
 - ~~CSS for FOG on mobile is hideous (borders all broken up...)~~
+- ~~Wording of the info panels needs help?~~
 
-- Wording of the info panels needs help?
+- Commenting the code?
+- Refactoring the code?
+- Press kit (writing, GIFs)
 
 # ~~AI?~~
 
-- Do I dare implement some kind of primitive AI? Do I have the right kind of possibilities for lookahead? I suspect it's just not worth it as per usual, too hard, not enough part of the idea. Let people play themselves.
+- ~~__NO__ Do I dare implement some kind of primitive AI? Do I have the right kind of possibilities for lookahead? I suspect it's just not worth it as per usual, too hard, not enough part of the idea. Let people play themselves.~~
 
 # The variations
 

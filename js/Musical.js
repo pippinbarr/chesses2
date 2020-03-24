@@ -58,7 +58,7 @@ class Musical extends BaseChess {
     }
     $(`.square-a1`).addClass('white-file-playing');
 
-    setInterval(() => {
+    this.playInterval = setInterval(() => {
       this.play();
     }, this.MUSIC_INTERVAL);
   }

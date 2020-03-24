@@ -33,15 +33,15 @@ function chessesSetup() {
     },
     {
       title: "FOG",
-      info: "Each piece can see the square adjacent to it, as well as any squares it attacks. The view each player has is the combination of the views of all pieces. Take turns to play your moves and look away when your opponent is playing."
+      // info: "Each piece can see the square adjacent to it, as well as any squares it attacks. The view each player has is the combination of the views of all pieces. Take turns to play your moves and look away when your opponent is playing."
     },
     {
       title: "XR",
-      info: "Use this virtual board to play cross-reality chess! Place your device screen up and place appropriately sized chess pieces in the standard opening position!"
+      info: "Use this virtual board to play cross-reality chess! Orient your device screen up and place appropriately sized chess pieces in the standard opening position!"
     },
     {
       title: "LEWITT",
-      info: "A drawing is built up through the movements of your chess pieces on the board. When the game ends, you can download an image of the drawing you have made together. Created in the spirit of Sol LeWitt's wall drawings."
+      info: `An homage to <a href="https://en.wikipedia.org/wiki/Sol_LeWitt">Sol LeWitt</a>'s <a href="https://en.wikipedia.org/wiki/Sol_LeWitt#Wall_drawings">wall drawings</a>.`
     },
     {
       title: "MUSICAL",
@@ -53,7 +53,7 @@ function chessesSetup() {
     },
     {
       title: "CHECK-RS",
-      info: "Pieces can only capture adjacent pieces by jumping over them to a clear space, as in draughts or checkers. Because they do not move linearly, knights cannot capture anything at all. Win by forcing the opposing king into a situation where it cannot avoid being jumped."
+      info: "Checkers-style capturing only. Knights, being non-linear, cannot capture anything. Win by capturing the opponent's king."
     },
   ];
   menu.sort((a, b) => a.title < b.title ? -1 : 1);
@@ -105,8 +105,8 @@ function titleClicked() {
 
   if (chess instanceof Musical) {
     clearInterval(chess.playInterval);
-    chess.whiteSynth.stop();
-    chess.blackSynth.stop();
+    // chess.whiteSynth.stop();
+    // chess.blackSynth.stop();
   }
 
   $('#game').slideUp(() => {
