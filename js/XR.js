@@ -1,22 +1,19 @@
 "use strict";
 
+// Cross-Reality (XR) Chess
+//
+// Displays an empty board for the user to play on with physical pieces.
 
 class XR extends BaseChess {
 
   constructor() {
     super();
 
-    // EMPTY POSITION
+    // We start with an empty position because the user it asked
+    // to bring their own physical pieces and play on top of their
+    // screen. Ha ha.
     this.game.load("8/8/8/8/8/8/8/8 w - - 0 7");
     this.board.position(this.game.fen(), false);
-
-    // CHECKMATE POSITION
-    // this.game.load("2rnkbnr/4pppp/4pbpp/7q/8/3QPPPP/3RPPPP/2NBKBNR w - - 0 7");
-    // this.board.position(this.game.fen(),false);
-
-    // STALEMATE POSITION
-    // this.game.load("5Rnk/7n/7R/8/8/8/7R/6QK w - - 0 7");
-    // this.board.position(this.game.fen(),false);
   }
 
 }
