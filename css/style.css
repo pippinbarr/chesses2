@@ -44,19 +44,19 @@ This is the style file for this project.
   display: none;
 }
 
-.white-file-not-playing {
+.w-file-not-playing {
   border-bottom: 4px solid black;
 }
 
-.black-file-not-playing {
+.b-file-not-playing {
   border-top: 4px solid black;
 }
 
-.white-file-playing {
+.w-file-playing {
   border-bottom: 4px solid yellow;
 }
 
-.black-file-playing {
+.b-file-playing {
   border-top: 4px solid yellow;
 }
 
