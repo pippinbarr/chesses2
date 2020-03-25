@@ -220,3 +220,9 @@ The final version goes more for mood with a kind of Philip Glassy minimalism mos
 The big remaining task in the overall project is polishing off the checkers version which has the most intensely irritating consequences for all the rules of chess. I just realized before lunch that castling through check would now be plausible, so that's a big and difficult thing to realize - I don't know if you can force a castling move? If not I suppose you can just set the board that way, but lots of special case stuff going on there. And then there's check and checkmate that require a bunch of stuff too, not to mention not disallowing particular moves that seem to be in check (which will require looking at all moves not just legal moves, and recalculating legality for myself - but I think that's something I did for Gravity, so should have the bones of it somewhere).
 
 The checkers version is actually pretty satisfying, so I do want to get it all right so that someone can play in the right spirit.
+
+---
+
+# Done??? (Wednesday, 25 March 2020, 13:35PM)
+
+Am I right in thinking this game is perhaps actually finished? All the games appear to work. I've commented and refactored the code so it's perhaps the least horrific piece of work I've put out into the creative commons (attribution) landscape. I'm kind of feeling the sadness of project wind-down. All suggests it's probably time to write the press kit and move on with something else?
