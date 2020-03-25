@@ -18,13 +18,13 @@ Pippin is an experimental game developer who has made games about everything fro
 
 ## Description
 
-_Chesses 2_ is a sequel to _Chesses_, as you might imagine. It's a further set of eight variations on the standard game of chess, comprising everything from the addition of a "fog of war" to pieces that change sides to game of chess that create drawings.
+_Chesses 2_ is a sequel to my previous game [_Chesses_](https://pippinbarr.github.io/chesses/), as you might imagine. It's a further set of eight variations on the standard game of chess, comprising everything from the addition of a "fog of war" to pieces that change sides each move to game of chess that create drawings.
 
 I think it's important to note that chess is a game with a [huge history of variations](https://www.chessvariants.com/) and at least two of the variants presented here are ideas others have had. Notably, there are multiple versions of chess with a "fog of war", including [Dark Chess](https://en.wikipedia.org/wiki/Dark_chess) (invented in 1989) and [Fog of War Chess](https://www.chessvariants.com/other.dir/fog_of_war_chess.html) (no date). As far as I can tell, other versions don't implement the precise rules I settled on for visibility - in particular I allow every piece to see the adjacent squares, and I also tune visibility by the number of pieces that can see a square for visual effect. Similarly, chess variants based on checkers already exit, such as [Chesskers](http://www.chesskers.com/) and [Chessers](https://boardgamegeek.com/boardgame/13626/chessers). Again, the version presented here as CHECK-RS seems to use a significantly different rule set. There's room for everyone!
 
 ## History
 
-I started _Chesses 2_ almost entirely because I was stuck with another project (_v r 4_) and, in the midst of the madness of a COVID-19 world, I needed something "straightforward" to work on and get some traction with. Making variations is generally my favourite design and development exercise because it lets me focus mostly on ideas and less on extremes of detail and implementation. That's not to say there weren't complexities is implementing the ideas (or ideas that failed utterly), but it's a nice headspace to just do something without worrying too much.
+I started _Chesses 2_ almost entirely because I was stuck on another project (_v r 4_) and, in the midst of the madness of a COVID-19 world, I needed something "straightforward" to work on and get some traction with. Making variations is generally my favourite design and development exercise because it lets me focus mostly on ideas and less on extremes of detail and implementation. That's not to say there weren't complexities in implementing the ideas (or indeed ideas that failed utterly), but it's a nice headspace to just do something without worrying too much.
 
 As with _Chesses_, I pretty much just sat down and tried to come up with a few ways of representing chess, going through rejected ideas for the first game, and coming up with new approaches. In this iteration I think I favoured a balance of easy-to-get joke games that were simple to make (3D chess, anyone?) alongside more complex reinterpretations that took work but may actually lead to interesting play (CHECK-RS chess is a nice example of this I suspect).
 
@@ -32,7 +32,7 @@ _Chesses 2_ is also another data-point in the ultra-detailed process documentati
 
 ## Technology
 
-_Chesses 2_ was created in JavaScript using the ever-so-useful [chess.js](https://github.com/jhlywa/chess.js) and [chessboard.js](https://chessboardjs.com/) libraries which together make representing chess (or variants) remarkably straightforward compared to the true nightmare it would be to do from scratch. It also involves some [jQuery](https://jquery.com/) and [jQuery UI](https://jqueryui.com/). The sound stuff in musical chess uses lovely sound library [Pizzicato.js](https://alemangui.github.io/pizzicato/). The drawing in LeWitt chess uses [p5.js](https://p5js.org/).
+_Chesses 2_ was created in JavaScript using the ever-so-useful [chess.js](https://github.com/jhlywa/chess.js) and [chessboard.js](https://chessboardjs.com/) libraries which together make representing chess (or variants) remarkably straightforward compared to the true nightmare it would be to do from scratch. It also involves some [jQuery](https://jquery.com/) and [jQuery UI](https://jqueryui.com/). The sound stuff in musical chess uses the lovely sound library [Pizzicato.js](https://alemangui.github.io/pizzicato/). The drawing in LeWitt chess uses [p5.js](https://p5js.org/).
 
 ## License
 
