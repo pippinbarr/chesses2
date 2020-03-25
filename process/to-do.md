@@ -11,6 +11,7 @@
 - Commenting the code?
 - Refactoring the code?
 - Press kit (writing, GIFs)
+- BUG: info panel sticks around sometimes
 
 # ~~AI?~~
 
