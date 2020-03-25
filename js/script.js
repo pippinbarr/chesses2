@@ -94,21 +94,6 @@ function chessesSetup() {
     .addClass('info-text')
     .html("DRAUGHTS<p>What is this?</p>")
     .appendTo($infoPanel);
-
-  // Listen for click events on the info icon and display the panel if so
-  $('.info').on('click', function(e) {
-    // Don't interpret it as a click on anything else
-    e.stopPropagation();
-    // If the panel isn't visible, put in the correct info and slide it down
-    if (!$('.info-panel').is(':visible')) {
-      $('.info-text').html(`<p>${$(this).parent().data('info')}</p>`);
-      $('.info-panel').slideDown();
-    }
-    // If the panel is visible, slide it back up
-    else {
-      $('.info-panel').slideUp();
-    }
-  });
 }
 
 // Handles returning to the menu when you click the title
@@ -126,6 +111,7 @@ function titleClicked() {
   $('#title').removeClass('active');
   // Hide the info icon if present
   $('.info').stop().css('opacity', 0);
+  $('.info').off('click');
 
   // Slide up the game and slide down the menu interface elements
   $('#game').slideUp(() => {
@@ -163,17 +149,34 @@ function menuClicked(e) {
   // Slide away the elements we shouldn't see, including the author
   // and all menu items not presently being played
   $('#author').slideUp();
-  $('.menu-item').not(`#${$(this).data('game')}`).slideUp(500, () => {
-    // Once all the menu items are gone, we can slide down the game
-    $('#game').slideDown(() => {
-      // If there are instructions slide them down (for Fog)
-      $(this).find('.instruction').slideDown();
-      // If there is an info icon for this game, fade it in so they notice
-      if ($(this).data('info')) {
-        $(`#${$(this).data('game')} .info`).stop().animate({
-          opacity: 1
-        }, 1000);
-      }
+  $.when($('.menu-item').not(`#${$(this).data('game')}`).slideUp(500, () => {
+      // Once all the menu items are gone, we can slide down the game
+      $('#game').slideDown(() => {
+        // If there are instructions slide them down (for Fog)
+        $(this).find('.instruction').slideDown();
+        // If there is an info icon for this game, fade it in so they notice
+        if ($(this).data('info')) {
+          $(`#${$(this).data('game')} .info`).stop().animate({
+            opacity: 1
+          }, 1000);
+        }
+      });
+    }))
+    .then(() => {
+      // Listen for click events on the info icon and display the panel if so
+      $('.info').on('click', function(e) {
+        console.log("click")
+        // Don't interpret it as a click on anything else
+        e.stopPropagation();
+        // If the panel isn't visible, put in the correct info and slide it down
+        if (!$('.info-panel').is(':visible')) {
+          $('.info-text').html(`<p>${$(this).parent().data('info')}</p>`);
+          $('.info-panel').slideDown();
+        }
+        // If the panel is visible, slide it back up
+        else {
+          $('.info-panel').slideUp();
+        }
+      });
     });
-  });
 }

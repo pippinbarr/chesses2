@@ -7,11 +7,11 @@
 - ~~Font size of FOG instructions on mobile?~~
 - ~~CSS for FOG on mobile is hideous (borders all broken up...)~~
 - ~~Wording of the info panels needs help?~~
+- ~~Commenting the code?~~
+- ~~Refactoring the code?~~
+- ~~BUG: info panel sticks around sometimes~~
 
-- Commenting the code?
-- Refactoring the code?
 - Press kit (writing, GIFs)
-- BUG: info panel sticks around sometimes
 
 # ~~AI?~~
 
