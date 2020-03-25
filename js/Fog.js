@@ -1,40 +1,34 @@
 "use strict";
 
+// Fog
+//
+// Chess with Fog of War
+//
+// See also:
+// Dark Chess https://en.wikipedia.org/wiki/Dark_chess
+// Fog of War Chess (William Lee Sims) https://www.chessvariants.com/other.dir/fog_of_war_chess.html
+// Dark Chess https://store.steampowered.com/app/1151130/Dark_Chess/
+//
+// As in: this isn't an original idea.
+
 class Fog extends BaseChess {
 
   constructor() {
     super();
 
-    // CHECKMATE POSITION
-    // this.game.load("2rnkbnr/4pppp/4pbpp/7q/8/3QPPPP/3RPPPP/2NBKBNR w - - 0 7");
-    // this.board.position(this.game.fen(),false);
-
-    // STALEMATE POSITION
-    // this.game.load("5Rnk/7n/7R/8/8/8/7R/6QK w - - 0 7");
-    // this.board.position(this.game.fen(),false);
-
+    // Add a fog div to every square (we'll manipulate its opacity during play)
     $(SQUARE).append('<div class="fog"></div>');
 
-    let turn = this.game.turn();
-    let color = turn === 'w' ? 'WHITE' : 'BLACK';
-    let offColor = turn === 'w' ? 'BLACK' : 'WHITE';
-    setTimeout(() => {
-      $('#fog-message').text(`${color}'S TURN. ${offColor} LOOK AWAY. ${color} PLAYER ${MOBILE ? 'TAP' : 'CLICK'} HERE WHEN READY.`).slideDown();
-      $('#fog-message').one('click', () => {
-        $('#fog-message').slideUp();
-        this.setupFog(false);
-        this.hideMessage();
-      })
-    }, 500);
-
-
-    // this.setupFog();
+    // Show the first instruction (for black to look away), which will also
+    // listen for the click to start play
+    this.showInstruction();
   }
 
-  // Override move since that's the key moment samsara happens
+  // Override moveCompleted so we can wait, then fade in the fog and switch the turn
   moveCompleted() {
-    // super.moveCompleted();
+    // Housekeeping
     this.from = null;
+    // Check if the game is actually over!
     let moves = this.getMoves();
     if (moves.length === 0) {
       if (this.game.in_check()) {
@@ -49,47 +43,68 @@ class Fog extends BaseChess {
     else {
       if (this.gameOver) return;
 
-      $('.fog').css('opacity', 1);
+      // If the game isn't over we want to show the results of the last move
+      // in terms of updating the fog, so
+      // Flip the turn back to the player who just played
       this.flipTurn();
+      // Display the fog
       this.setupFog(false);
+      // Flip the turn back to the correct player
       this.flipTurn();
-
+      // Wait and then...
       setTimeout(() => {
-        $('.fog').animate({
-          opacity: 1
-        }, 1000, () => {
-          let turn = this.game.turn();
-          let color = turn === 'w' ? 'WHITE' : 'BLACK';
-          let offColor = turn === 'w' ? 'BLACK' : 'WHITE';
-          setTimeout(() => {
-            $('#fog-message').text(`${color}'S TURN. ${offColor} LOOK AWAY. ${color} PLAYER CLICK HERE WHEN READY.`).slideDown();
-            $('#fog-message').one('click', () => {
-              $('#fog-message').slideUp();
-              this.changeTurn();
-              this.hideMessage();
-            })
-          }, 500);
-        });
+        // Animate the fog to totally opaque so that nobody can see anything
+        $.when($('.fog').animate({
+            opacity: 1
+          }, 1000))
+          .then(() => {
+            // And then show the instructions for the next turn
+            this.showInstruction();
+          });
       }, 2000);
     }
 
   }
 
+  // Displays the instructions prior to the next turn, telling you who can look
+  // at the board and who should look away
+  showInstruction() {
+    // Get the turn
+    let turn = this.game.turn();
+    // Note who is the color to play and who is "off"
+    let color = turn === 'w' ? 'WHITE' : 'BLACK';
+    let offColor = turn === 'w' ? 'BLACK' : 'WHITE';
+    // Delay, then show our message describing the next turn instructions
+    // including mobile-sensitive TAP/CLICK distinction!
+    setTimeout(() => {
+      $('#fog-message').text(`${color}'S TURN. ${offColor} LOOK AWAY. ${color} PLAYER ${MOBILE ? 'TAP' : 'CLICK'} HERE WHEN READY.`).slideDown();
+      // They click/tap the message itself to trigger the next turn...
+      $('#fog-message').one('click', () => {
+        // Remove the message
+        $('#fog-message').slideUp();
+        // Display the correct fog for this turn
+        this.setupFog(false);
+        // I'm not sure what this is for to be honest?
+        this.hideMessage();
+        this.changeTurn();
+      })
+    }, 500);
+  }
+
+  // Override changeTurn so that it displays the current state of the fog before changing over
+  // (The parent version is just changing the turn indicator and reenabling input)
   changeTurn() {
     this.setupFog(false);
     super.changeTurn();
   }
 
-  setupFog(animate) {
+  // setupFog is the big one of course. It calculates the visibility of every square
+  // on the board based on the current turn and the lines of sight of all the pieces.
+  // The animate flag is there for when I was trying to animate the fog in, but it seemed
+  // to lag so much I gave up
+  setupFog() {
     // Add fog to every square (we'll adjust it as appropriate)
-    if (!animate) $(`${SQUARE} .fog`).css('opacity', 1);
-
-    if (animate) {
-      $(SQUARE).each(function() {
-        $(this).data('targetOpacity', 1);
-      });
-    }
-
+    $(`${SQUARE} .fog`).css('opacity', 1);
     // Remember whose turn it is
     const turn = this.game.turn();
 
@@ -98,60 +113,43 @@ class Fog extends BaseChess {
       verbose: true
     });
 
-    // Remove fog from every square involved in any piece's move
-    // (including start position)
+    // Calculate fog for every destination square involved in any piece's move
+    // i.e. you can see everywhere you can go (including capture squares)
     moves.forEach((move) => {
-      this.see($(`.square-${move.to}`), animate);
+      this.see(move.to);
     });
 
+    // Remember context (because we're going into a .each())
     let context = this;
     $(SQUARE).each(function() {
-      // if (!$(this).hasClass('fog')) return;
+      // Get the current square's notation
       const square = $(this).data('square');
-      let piece = $(this).children(PIECE)[0];
-      if (piece !== undefined) {
-        let pieceColor = $(piece).data('piece')[0];
-        let pieceType = $(piece).data('piece')[1].toLowerCase();
-        if (pieceColor === turn) {
+      // Get the piece on that square
+      let piece = context.game.get(square);
+      // If there is a piece
+      if (piece) {
+        // And it's of the current side
+        if (piece.color === turn) {
           // Make the square the piece is on visible (even if it can't move)
-          // $(`.square-${square}`).removeClass('fog');
-          if (!animate) $(`.square-${square} .fog`).css('opacity', 0);
-          if (animate) $(`.square-${square}`).data('targetOpacity', 0);
-          // context.see($(`.square-${square} .fog`));
-
-          // Make the squares around the piece visible
-          const rank = square[0];
-          const file = parseInt(square[1]);
-          const up = `${rank}${file+1}`;
-          const upLeft = `${RANKS[RANKS.indexOf(rank)-1]}${file+1}`;
-          const upRight = `${RANKS[RANKS.indexOf(rank)+1]}${file+1}`;
-          const down = `${rank}${file-1}`;
-          const downLeft = `${RANKS[RANKS.indexOf(rank)-1]}${file-1}`;
-          const downRight = `${RANKS[RANKS.indexOf(rank)+1]}${file-1}`;
-          const left = `${RANKS[RANKS.indexOf(rank)-1]}${file}`;
-          const right = `${RANKS[RANKS.indexOf(rank)+1]}${file}`;
-          context.see($(`.square-${up}`), animate);
-          context.see($(`.square-${down}`), animate);
-          context.see($(`.square-${left}`), animate);
-          context.see($(`.square-${right}`), animate);
-          context.see($(`.square-${upLeft}`), animate);
-          context.see($(`.square-${upRight}`), animate);
-          context.see($(`.square-${downLeft}`), animate);
-          context.see($(`.square-${downRight}`), animate);
-
+          $(`.square-${square} .fog`).css('opacity', 0);
+          // Go through every neighbour of the current piece's square
+          const file = FILES.indexOf(square[0]);
+          const rank = RANKS.indexOf(square[1]);
+          for (let r = rank - 1; r <= rank + 1; r++) {
+            for (let f = file - 1; f <= file + 1; f++) {
+              // Get the notation
+              let neighbour = `${FILES[f]}${RANKS[r]}`;
+              // See it
+              context.see(neighbour);
+            }
+          }
         }
       }
     });
-
-    if (animate) {
-      $(SQUARE).each(function() {
-        $(this).children('.fog').animate({
-          opacity: $(this).data('targetOpacity')
-        }, 2000);
-      })
-    }
   }
 
+  // Override showResult to animate away the fog slowly at the end
+  // in a beautiful and shocking reveal
   showResult(win, color) {
     super.showResult(win, color);
     $(`.fog`).animate({
@@ -159,19 +157,19 @@ class Fog extends BaseChess {
     }, 5000);
   }
 
-
-  see(square, animate) {
-    if (!animate) {
-      let opacity = parseFloat(square.children('.fog').css('opacity'));
-      opacity -= 0.2;
-      square.children('.fog').css('opacity', opacity);
-    }
-    else {
-      let opacity = $(square).data('targetOpacity');
-      opacity -= 0.2;
-      if (opacity < 0) opacity = 0;
-      $(square).data('targetOpacity', opacity);
-    }
+  // see() calculates the change in opacity of a square based on it having
+  // been seen
+  see(square) {
+    let $square = $(`.square-${square}`);
+    if ($square.length === 0) return;
+    // Get the current opacity
+    let opacity = parseFloat($square.children('.fog').css('opacity'));
+    // Reduce it by our set amount
+    opacity -= 0.2;
+    // Don't allow negative opacity
+    if (opacity < 0) opacity = 0;
+    // Set the opacity to the new value
+    $square.children('.fog').css('opacity', opacity);
   }
 
 }

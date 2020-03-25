@@ -5,6 +5,9 @@ const PIECE = ".piece-417db";
 const FILES = "abcdefgh";
 const RANKS = "12345678";
 
+const CHECKMATE_FEN = "2rnkbnr/4pppp/4pbpp/7q/8/3QPPPP/3RPPPP/2NBKBNR w - - 0 7";
+const STALEMATE_FEN = "5Rnk/7n/7R/8/8/8/7R/6QK w - - 0 7";
+
 // The sound effects
 const placeSFX = new Howl({
   src: ['assets/sounds/place.wav', 'assets/sounds/place.mp3']
@@ -208,8 +211,10 @@ class BaseChess {
   }
 
   changeTurn() {
+    console.log("changeTurn()");
     if (this.gameOver) return;
-    if (this.game.turn() === 'w') {
+    console.log(this.game.turn());
+    if (this.game.turn() === this.game.WHITE) {
       $('.board-b72b1').removeClass('blackTurn', 250);
       $('.board-b72b1').addClass('whiteTurn', 250, () => {
         this.enableInput();
