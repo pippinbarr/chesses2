@@ -16,4 +16,9 @@ class XR extends BaseChess {
     this.board.position(this.game.fen(), false);
   }
 
+  // Override to eliminate turn indicator
+  changeTurn() {
+
+  }
+
 }

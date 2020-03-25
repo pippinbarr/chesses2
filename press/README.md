@@ -50,20 +50,23 @@ See animated GIFs.
 
 ## Images
 
+![](images/check-rs-chess.gif)  
+CHECK-RS
+
 ![](images/fog-chess.gif)  
 FOG
 
+![](images/lewitt-chess.gif)  
+LEWITT
+
 ![](images/reversal-chess.gif)  
 REVERSAL
-
-![](images/check-rs-chess.gif)  
-CHECK-RS
 
 ![](images/samsara-chess.gif)  
 SAMSARA
 
 ![](images/xr-chess.png)  
-XR (Cross-Reality)
+XR (Cross-Reality) [(click for larger image)](images/xr-chess-large.png)]
 
 ## Press
 
