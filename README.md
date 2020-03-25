@@ -1,12 +1,12 @@
 # Chesses 2
 
-_..._
+_You've chessed! You've chessesed! But have you chesses2ed?! You haven't?! Game on! Peer through the fog of war! Go through the cycle of death and rebirth! Experience the hottest new XR app in town!_
 
-#### [Play the current build of _Chesses 2_](https://pippinbarr.github.io/chesses2)
+#### [Play _Chesses 2_](https://pippinbarr.github.io/chesses2)
 
 ---
 
-_Chesses 2_ is another set of eight variations on the classic game of chess, following in the footstps of _Chesses_...
+_Chesses 2_ is another set of eight variations on the classic game of chess, following closely in the footstps of [_Chesses_](https://pippinbarr.github.io/chesses/). Play chess with a Fog of War. Play chess in 3D. Play chess like it's checkers.
 
 
 #### Read the [Press kit](https://github.com/pippinbarr/chesses2/blob/master/press/README.md) for press information
