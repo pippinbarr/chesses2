@@ -258,7 +258,7 @@ class Draughts extends BaseChess {
       this.currentMove.castlingFlag = undefined;
       this.flipTurn();
       this.moveCompleted();
-
+      placeSFX.play();
     }, this.config.moveSpeed * 1.1);
   }
 
