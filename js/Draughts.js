@@ -266,7 +266,7 @@ class Draughts extends BaseChess {
   // as the need to then offer further captures if available)
   capturingMove(from, to) {
     this.handleDisableCastling(from, to);
-    console.log("HANDLING CAPTURE MOVE")
+    // console.log("HANDLING CAPTURE MOVE")
     let fromPiece = this.game.get(from);
     let capturedPiece = this.game.get(this.currentMove.captureSquare);
     this.game.remove(this.currentMove.from);
@@ -287,7 +287,7 @@ class Draughts extends BaseChess {
 
       let fenArray = this.game.fen().split(' ');
       if (fenArray[0].indexOf('k') < 0 || fenArray[0].indexOf('K') < 0) {
-        this.showResult(true, this.getTurn(false));
+        this.showResult(true, fromPiece.color);
         return;
       }
 

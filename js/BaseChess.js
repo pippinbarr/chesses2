@@ -95,7 +95,7 @@ class BaseChess {
       }
       else if ($(event.currentTarget).hasClass('highlight1-32417')) {
         let to = $(event.currentTarget).attr('data-square');
-        console.log(this.from, to)
+        // console.log(this.from, to)
         this.move(this.from, to);
       };
     }
@@ -211,9 +211,9 @@ class BaseChess {
   }
 
   changeTurn() {
-    console.log("changeTurn()");
+    // console.log("changeTurn()");
     if (this.gameOver) return;
-    console.log(this.game.turn());
+    // console.log(this.game.turn());
     if (this.game.turn() === this.game.WHITE) {
       $('.board-b72b1').removeClass('blackTurn', 250);
       $('.board-b72b1').addClass('whiteTurn', 250, () => {
