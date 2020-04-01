@@ -121,6 +121,7 @@ class Musical extends BaseChess {
 
   // When quitting this game we need to stop the music from playing
   quit() {
+    console.log("Quit.");
     clearInterval(this.playInterval);
   }
 }

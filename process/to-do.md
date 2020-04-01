@@ -1,3 +1,8 @@
+# Bugs
+
+- In checkers it's possible to capture the king and lose
+- In musical the music can sometimes keep playing after returning to the menu
+
 # General to-dos
 
 - ~~Add an information window to explain any given game~~
@@ -10,8 +15,7 @@
 - ~~Commenting the code?~~
 - ~~Refactoring the code?~~
 - ~~BUG: info panel sticks around sometimes~~
-
-- Press kit (writing, GIFs)
+- ~~Press kit (writing, GIFs)~~
 
 # ~~AI?~~
 

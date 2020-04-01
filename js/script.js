@@ -139,7 +139,7 @@ function menuClicked(e) {
 
   // Activate the title as a quit button
   $('#title').addClass('active');
-  $('#title.active').on('click', titleClicked);
+  $('#title.active').one('click', titleClicked);
 
   // Deactivate the menu item buttons (because one of them is being
   // used to display the title of the current game and shouldn't start a new one)
@@ -165,7 +165,6 @@ function menuClicked(e) {
     .then(() => {
       // Listen for click events on the info icon and display the panel if so
       $('.info').on('click', function(e) {
-        console.log("click")
         // Don't interpret it as a click on anything else
         e.stopPropagation();
         // If the panel isn't visible, put in the correct info and slide it down
