@@ -2,7 +2,7 @@
 
 ![](images/chesses-2-banner.png)
 
-## [Play Online](https://www.pippinbarr.com/chesses2/) (desktop and mobile)
+# [Play Online](https://www.pippinbarr.com/chesses2/) (desktop and mobile)
 
 ## Description
 *You've chessed! You've chessesed! But have you chesses2ed?! You haven't?! Game on! Peer through the fog of war! Go through the cycle of death and rebirth! Experience the hottest new XR app in town!*
@@ -10,6 +10,8 @@
 _Chesses 2_ is another set of eight variations on the classic game of chess, following closely in the footstps of [*Chesses*](https://www.pippinbarr.com/chesses/). Play chess with a Fog of War. Play chess in 3D. Play chess like it's checkers.
 
 ## Press
+
+* Clayton, Natalie. [Chesses 2 throws a classic back into the blender with eight new twists](https://www.rockpapershotgun.com/2020/04/02/chesses-2-throws-a-classic-back-into-the-blender-with-eight-new-twists/). Rock, Paper, Shotgun. 2 April 2020.
 
 Read the [Press kit](../press) for press information
 

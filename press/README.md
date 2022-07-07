@@ -70,10 +70,6 @@ SAMSARA
 ![](images/xr-chess.png)  
 XR (Cross-Reality) [(click for larger image)](images/xr-chess-large.png)]
 
-## Press
-
-- Clayton, Natalie. [Chesses 2 throws a classic back into the blender with eight new twists](https://www.rockpapershotgun.com/2020/04/02/chesses-2-throws-a-classic-back-into-the-blender-with-eight-new-twists/). Rock, Paper, Shotgun. 2 April 2020.
-
 ## Additional Links
 
 - [Process documentation of _Chesses 2_](https://github.com/pippinbarr/chesses2/blob/master/process/README.md)
