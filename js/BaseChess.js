@@ -125,10 +125,14 @@ class BaseChess {
     return moves.length;
   }
 
-  move(from, to, silent) {
+  move(from, to, silent, multiplayer_this_move_is_from_another_player) {
     if (silent === undefined) silent = false;
+    if (multiplayer_this_move_is_from_another_player === undefined) multiplayer_this_move_is_from_another_player = false;
 
-    // if (!silent) this.disableInput();
+    //send move to peers (first, to slightly reduce the time they must wait)
+    if(!multiplayer_this_move_is_from_another_player){
+      multiplayer_send(from, to, silent, true);
+    }
 
     // Make the move in the game representation
     let move = {
